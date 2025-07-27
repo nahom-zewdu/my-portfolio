@@ -41,6 +41,24 @@ const projects = [
       </div>
     ),
   },
+  {
+    title: "EthLink – Group Chat Platform",
+    overview: "A minimalist web-based discussion app with room-based conversations and user profiles.",
+    stack: ["Django", "HTML", "CSS", "JavaScript"],
+    decisions: [
+      "Searchable discussion rooms categorized by topic.",
+      "Authenticated room creation with optional descriptions.",
+      "User profiles with edit support and activity tracking."
+    ],
+    links: [
+      { label: "GitHub", href: "https://github.com/nahom-zewdu/EthLink" }
+    ],
+    Diagram: () => (
+      <div className="w-full h-24 bg-muted rounded-xl flex items-center justify-center text-muted-foreground">
+        [Flow Diagram]
+      </div>
+    ),
+  },
 ];
 
 const containerVariants = {
