@@ -2,10 +2,10 @@ import { Mail, Github, Linkedin, Send } from "lucide-react";
 import { motion } from "framer-motion";
 
 const links = [
-  { href: "mailto:nahom@example.com", label: "Email", icon: Mail },
-  { href: "https://github.com/nahom", label: "GitHub", icon: Github },
-  { href: "https://t.me/nahom", label: "Telegram", icon: Send },
-  { href: "https://linkedin.com/in/nahom", label: "LinkedIn", icon: Linkedin },
+  { href: "mailto:nahiyo86@gmail.com", label: "Email", icon: Mail },
+  { href: "https://github.com/nahom-zewdu", label: "GitHub", icon: Github },
+  { href: "https://t.me/nahom_z1", label: "Telegram", icon: Send },
+  { href: "https://linkedin.com/in/nahom-zewdu", label: "LinkedIn", icon: Linkedin },
 ];
 
 const containerVariants = {
@@ -77,7 +77,7 @@ export default function ContactSection() {
         ))}
       </motion.div>
       <motion.a 
-        href="mailto:nahom@example.com" 
+        href="mailto:nahiyo86@gmail.com" 
         className="text-primary underline text-base"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -88,7 +88,7 @@ export default function ContactSection() {
           transition: { duration: 0.2 }
         }}
       >
-        nahom@example.com
+        nahiyo86@gmail.com
       </motion.a>
     </section>
   );
