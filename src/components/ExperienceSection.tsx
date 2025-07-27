@@ -15,7 +15,8 @@ const experiences = [
     tech: ["Python", "Algorithms", "System Design"],
     bullets: [
       "Completed intensive training in algorithms and system design.",
-      "Collaborated on backend projects with a focus on code quality and testing."
+      "Collaborated on backend projects with a focus on code quality and testing.",
+      "Solved 800+ algorithm problems on platforms like LeetCode and Codeforces.",
     ]
   },
 ];
