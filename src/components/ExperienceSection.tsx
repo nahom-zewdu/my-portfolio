@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 const experiences = [
   {
     org: "Eskalate (Backend Intern)",
-    tech: ["Go", "gRPC", "PostgreSQL"],
+    tech: ["Go", "REST", "MongoDB", "JWT"],
     bullets: [
       "Built and optimized microservices for high-throughput data pipelines.",
-      "Designed and implemented gRPC APIs for internal tooling.",
+      "Designed and implemented RESTFUL APIs for internal tooling.",
       "Improved system observability with custom metrics and tracing."
     ]
   },
@@ -18,15 +18,6 @@ const experiences = [
       "Collaborated on backend projects with a focus on code quality and testing."
     ]
   },
-  {
-    org: "Tigat (Automation System)",
-    tech: ["Node.js", "MongoDB", "Docker"],
-    bullets: [
-      "Developed automation for a subscription-based service platform.",
-      "Implemented CI/CD pipelines and containerized deployments.",
-      "Reduced manual ops by 80% through workflow automation."
-    ]
-  }
 ];
 
 const containerVariants = {
