@@ -82,7 +82,7 @@ export default function Home() {
             className="max-w-xl mx-auto text-lg md:text-xl text-muted-foreground"
             variants={fadeInUp}
           >
-            "I design and build resilient backend systems that scale — with clarity, intention, and impact."
+            "I design and build resilient backend systems that scale with clarity, intention, and impact."
           </motion.p>
         </motion.div>
         <motion.div 
@@ -98,12 +98,15 @@ export default function Home() {
           </motion.div>
           <motion.div variants={fadeInUp}>
             <Button asChild variant="outline" size="lg">
-              <Link href="/notes">Engineering Notes</Link>
+              <a href="/Nahom-Zewdu.pdf" download target="_blank" rel="noopener noreferrer">
+                Download CV
+              </a>
+
             </Button>
           </motion.div>
           <motion.div variants={fadeInUp}>
             <Button asChild variant="ghost" size="lg">
-              <a href="https://github.com/nahom" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://github.com/nahom-zewdu" target="_blank" rel="noopener noreferrer">GitHub</a>
             </Button>
           </motion.div>
         </motion.div>
