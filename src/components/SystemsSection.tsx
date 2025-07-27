@@ -3,38 +3,24 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
-    title: "Distributed Task Queue",
-    overview: "A resilient, horizontally scalable task queue for background jobs.",
-    stack: ["Go", "Redis", "PostgreSQL"],
+    title: "Nuvom - Distributed Task Queue",
+    overview:
+      "A developer-first, plugin-powered background job system for Python. Built for flexibility, clarity, and production-readiness without infrastructure overhead.",
+    stack: ["Python", "Redis", "Prometheus", "Pydantic"],
     decisions: [
-      "Used Redis streams for reliable delivery.",
-      "Worker auto-scaling based on queue depth.",
-      "Graceful failure handling and retries."
+      "Plugin-first design: queues, storages, metrics, and hooks are all swappable.",
+      "Supports job metadata, retries, tracebacks, rich CLI inspection and static task discovery."
     ],
-    Diagram: () => <div className="w-full h-24 bg-muted rounded-xl flex items-center justify-center text-muted-foreground">[Diagram]</div>
+    links: [
+      { label: "Live Demo", href: "https://nuvom.netlify.app" },
+      { label: "GitHub", href: "https://github.com/nahom-zewdu/Nuvom" }
+    ],
+    Diagram: () => (
+      <div className="w-full h-24 bg-muted rounded-xl flex items-center justify-center text-muted-foreground">
+        [Nuvom System Diagram]
+      </div>
+    ),
   },
-  {
-    title: "Event-Driven Notification System",
-    overview: "Real-time notifications with event sourcing and fan-out.",
-    stack: ["Node.js", "Kafka", "MongoDB"],
-    decisions: [
-      "Event sourcing for auditability.",
-      "Kafka for high-throughput fan-out.",
-      "Idempotent delivery logic."
-    ],
-    Diagram: () => <div className="w-full h-24 bg-muted rounded-xl flex items-center justify-center text-muted-foreground">[Diagram]</div>
-  },
-  {
-    title: "API Gateway with Rate Limiting",
-    overview: "A secure, performant API gateway with global rate limiting.",
-    stack: ["Go", "Nginx", "Redis"],
-    decisions: [
-      "Token bucket algorithm for rate limiting.",
-      "Centralized auth and logging.",
-      "Zero-downtime config reloads."
-    ],
-    Diagram: () => <div className="w-full h-24 bg-muted rounded-xl flex items-center justify-center text-muted-foreground">[Diagram]</div>
-  }
 ];
 
 const containerVariants = {
@@ -95,10 +81,19 @@ export default function SystemsSection() {
                 <div className="flex flex-wrap gap-2 text-xs font-mono text-muted-foreground">
                   {proj.stack.map(s => <span key={s} className="bg-accent px-2 py-0.5 rounded">{s}</span>)}
                 </div>
-                <ul className="list-disc list-inside text-sm pl-2">
+
+                <ul className="list-disc list-inside text-sm pl-2 font-mono text-muted-foreground">
                   {proj.decisions.map((d, j) => <li key={j}>{d}</li>)}
                 </ul>
-                <proj.Diagram />
+
+                <div className="mt-4 flex gap-4 ">
+                  {proj.links.map(({ label, href }) => (
+                    <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-primary hover:underline">
+                      {label}
+                    </a> 
+                  ))}
+                </div>
+                {/* <proj.Diagram /> */}
               </CardContent>
             </Card>
           </motion.div>
