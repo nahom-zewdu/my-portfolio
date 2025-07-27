@@ -41,6 +41,7 @@ const projects = [
       </div>
     ),
   },
+  
   {
     title: "EthLink – Group Chat Platform",
     overview: "A minimalist web-based discussion app with room-based conversations and user profiles.",
@@ -56,6 +57,26 @@ const projects = [
     Diagram: () => (
       <div className="w-full h-24 bg-muted rounded-xl flex items-center justify-center text-muted-foreground">
         [Flow Diagram]
+      </div>
+    ),
+  },
+
+  {
+    title: "Loan Tracker Application",
+    overview:
+      "A scalable backend service for managing loan workflows with secure JWT authentication, email verification, and admin controls.",
+    stack: ["Go (Gin)", "MongoDB", "JWT", "SMTP"],
+    decisions: [
+      "Layered architecture with clean separation: domain, repository, use case, delivery.",
+      "Robust JWT-based auth and middleware for secure API access.",
+      "Flexible MongoDB data modeling with performant query filtering for admin workflows."
+    ],
+    links: [
+      { label: "GitHub", href: "https://github.com/nahom-zewdu/loan-tracker" }
+    ],
+    Diagram: () => (
+      <div className="w-full h-24 bg-muted rounded-xl flex items-center justify-center text-muted-foreground">
+        [Loan Tracker System Diagram]
       </div>
     ),
   },
