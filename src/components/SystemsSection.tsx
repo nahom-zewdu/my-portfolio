@@ -21,6 +21,26 @@ const projects = [
       </div>
     ),
   },
+
+  {
+    title: "GuessIt - Multiplayer Drawing Game",
+    overview:
+      "A real-time, turn-based game built with Django Channels and WebSockets for seamless live interaction.",
+    stack: ["Django", "PostgreSQL", "Redis", "WebSockets"],
+    decisions: [
+      "WebSocket architecture via Django Channels and Redis layer.",
+      "ASGI-first deployment with Daphne and Docker for scalability."
+    ],
+    links: [
+      { label: "Live Demo", href: "https://guezzit.netlify.app" },
+      { label: "GitHub", href: "https://github.com/nahom-zewdu/Online-Multiplayer-Drawing-Game" }
+    ],
+    Diagram: () => (
+      <div className="w-full h-24 bg-muted rounded-xl flex items-center justify-center text-muted-foreground">
+        [Game Architecture Diagram]
+      </div>
+    ),
+  },
 ];
 
 const containerVariants = {
