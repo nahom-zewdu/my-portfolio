@@ -1,6 +1,5 @@
 import type { NextConfig } from "next"
-import withMDX from "@next/mdx" // This is a function
-
+import withMDX from "@next/mdx"
 const withMdx = withMDX({
   extension: /\.mdx?$/,
 })
