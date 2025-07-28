@@ -15,15 +15,14 @@ interface PageProps {
 }
 
 export default async function NotePage({ params }: PageProps) {
-
-  const { slug } = params;
-  const filePath = path.join(process.cwd(), "my-portfolio/content/notes", `${slug}.mdx`);
+  const filePath = path.join(process.cwd(), "my-portfolio/content/notes", `${params.slug}.mdx`);
   if (!fs.existsSync(filePath)) return notFound();
-  // Dynamic import of the MDX file as a React component
-  const Note = (await import(`../../../../content/notes/${slug}.mdx`)).default;
+
+  const Note = (await import(`../../../../content/notes/${params.slug}.mdx`)).default;
+
   return (
     <article className="prose dark:prose-invert mx-auto py-16 px-4">
       <Note />
     </article>
   );
-} 
+}
