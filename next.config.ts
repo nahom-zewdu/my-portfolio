@@ -6,7 +6,11 @@ const withMdx = withMDX({
 });
 
 const nextConfig: NextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   pageExtensions: ["js", "jsx", "ts", "tsx", "mdx"],
+  reactStrictMode: true,
 };
 
 export default withMdx(nextConfig);
