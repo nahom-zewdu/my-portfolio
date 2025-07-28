@@ -8,7 +8,14 @@ export async function generateStaticParams() {
   return files.map(file => ({ slug: file.replace(/\.mdx$/, "") }));
 }
 
-export default async function NotePage({ params }: { params: { slug: string } }) {
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default async function NotePage({ params }: PageProps) {
+
   const { slug } = params;
   const filePath = path.join(process.cwd(), "my-portfolio/content/notes", `${slug}.mdx`);
   if (!fs.existsSync(filePath)) return notFound();
