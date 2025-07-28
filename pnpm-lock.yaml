@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@next/mdx':
+        specifier: ^15.4.4
+        version: 15.4.4
       '@radix-ui/react-dialog':
         specifier: ^1.1.14
         version: 1.1.14(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -315,6 +318,17 @@ packages:
 
   '@next/eslint-plugin-next@15.4.3':
     resolution: {integrity: sha512-wYYbP29uZlm9lqD1C6HDgW9WNNt6AlTogYKYpDyATs0QrKYIv/rPueoIDRH6qttXGCe3zNrb7hxfQx4w8OSkLA==}
+
+  '@next/mdx@15.4.4':
+    resolution: {integrity: sha512-DB64O/+wlcqr0XrATgGLTk3FqxdOgC035iC4wDlmG2QugNVq7godC6bLhVdNbo9uW7ib0tmgESXcG3JV7l9HiA==}
+    peerDependencies:
+      '@mdx-js/loader': '>=0.15.0'
+      '@mdx-js/react': '>=0.15.0'
+    peerDependenciesMeta:
+      '@mdx-js/loader':
+        optional: true
+      '@mdx-js/react':
+        optional: true
 
   '@next/swc-darwin-arm64@15.4.3':
     resolution: {integrity: sha512-YAhZWKeEYY7LHQJiQ8fe3Y6ymfcDcTn7rDC8PDu/pdeIl1Z2LHD4uyPNuQUGCEQT//MSNv6oZCeQzZfTCKZv+A==}
@@ -2032,6 +2046,10 @@ packages:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
+  source-map@0.7.6:
+    resolution: {integrity: sha512-i5uvt8C3ikiWeNZSVZNWcfZPItFQOsYTUAOkcUPGd8DqDy1uOUikjt5dG+uRlwyvR108Fb9DOd4GvXfT0N2/uQ==}
+    engines: {node: '>= 12'}
+
   stable-hash@0.0.5:
     resolution: {integrity: sha512-+L3ccpzibovGXFK+Ap/f8LOS0ahMrHTf3xu7mMLSpEGU0EO9ucaysSylKo9eRDFNhWve/y275iPmIZ4z39a9iA==}
 
@@ -2434,6 +2452,10 @@ snapshots:
   '@next/eslint-plugin-next@15.4.3':
     dependencies:
       fast-glob: 3.3.1
+
+  '@next/mdx@15.4.4':
+    dependencies:
+      source-map: 0.7.6
 
   '@next/swc-darwin-arm64@15.4.3':
     optional: true
@@ -4304,6 +4326,8 @@ snapshots:
     optional: true
 
   source-map-js@1.2.1: {}
+
+  source-map@0.7.6: {}
 
   stable-hash@0.0.5: {}
 
