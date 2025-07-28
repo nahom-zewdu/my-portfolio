@@ -12,7 +12,7 @@ const projects = [
       "Supports job metadata, retries, tracebacks, rich CLI inspection and static task discovery."
     ],
     links: [
-      { label: "Live Demo", href: "https://nuvom.netlify.app" },
+      { label: "Documentation", href: "https://nuvom.netlify.app" },
       { label: "GitHub", href: "https://github.com/nahom-zewdu/Nuvom" }
     ],
     Diagram: () => (
@@ -32,7 +32,7 @@ const projects = [
       "ASGI-first deployment with Daphne and Docker for scalability."
     ],
     links: [
-      { label: "Live Demo", href: "https://guezzit.netlify.app" },
+      { label: " Play", href: "https://guezzit.netlify.app" },
       { label: "GitHub", href: "https://github.com/nahom-zewdu/Online-Multiplayer-Drawing-Game" }
     ],
     Diagram: () => (
