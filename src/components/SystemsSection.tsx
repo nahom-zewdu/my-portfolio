@@ -26,7 +26,7 @@ const projects = [
     title: "GuessIt - Multiplayer Drawing Game",
     overview:
       "A real-time, turn-based game built with Django Channels and WebSockets for seamless live interaction.",
-    stack: ["Django", "PostgreSQL", "Redis", "WebSockets"],
+    stack: ["Python", "Javascript", "PostgreSQL", "Redis", "WebSockets"],
     decisions: [
       "WebSocket architecture via Django Channels and Redis layer.",
       "ASGI-first deployment with Daphne and Docker for scalability."
