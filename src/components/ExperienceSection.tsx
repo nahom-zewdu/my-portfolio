@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const experiences = [
   {
     org: "Eskalate (Backend Intern)",
-    tech: ["Go", "REST", "MongoDB", "JWT"],
+    tech: ["Go", "gRPC", "REST", "MongoDB", "JWT", "Docker"],
     bullets: [
       "Built and optimized microservices for high-throughput data pipelines.",
       "Designed and implemented RESTFUL APIs for internal tooling.",
@@ -12,7 +12,7 @@ const experiences = [
   },
   {
     org: "A2SV (Software Engineering Trainee)",
-    tech: ["Python", "Algorithms", "System Design"],
+    tech: ["Python", "Algorithms", "System Design", "Agile Practices", "Collaboration"],
     bullets: [
       "Completed intensive training in algorithms and system design.",
       "Collaborated on backend projects with a focus on code quality and testing.",
