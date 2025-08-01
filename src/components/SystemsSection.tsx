@@ -6,7 +6,7 @@ const projects = [
     title: "Nuvom - Distributed Task Queue",
     overview:
       "A developer-first, plugin-powered background job system for Python. Built for flexibility, clarity, and production-readiness without infrastructure overhead.",
-    stack: ["Python", "Redis", "Prometheus", "Pydantic"],
+    stack: ["Python", "Redis", "Prometheus", "msgpack", "Pydantic", "typer"],
     decisions: [
       "Plugin-first design: queues, storages, metrics, and hooks are all swappable.",
       "Supports job metadata, retries, tracebacks, rich CLI inspection and static task discovery."
