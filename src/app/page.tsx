@@ -34,7 +34,7 @@ export default function Home() {
       <motion.section
         id="hero"
         ref={heroRef}
-        className="relative flex flex-col items-center justify-center min-h-[70vh] gap-8 text-center px-4 overflow-hidden"
+        className="relative z-0 flex flex-col items-center justify-center min-h-[70vh] gap-8 text-center px-4 overflow-hidden pb-12"
         onMouseMove={e => {
           const rect = heroRef.current?.getBoundingClientRect();
           if (!rect) return;
@@ -61,7 +61,7 @@ export default function Home() {
           }
         />
         <motion.div 
-          className="space-y-4"
+          className="space-y-6 max-w-3xl mx-auto"
           variants={fadeInUp}
           initial="initial"
           animate="animate"
@@ -79,10 +79,10 @@ export default function Home() {
             className="text-xl md:text-2xl font-mono text-muted-foreground"
           />
           <motion.p 
-            className="max-w-xl mx-auto text-lg md:text-xl text-muted-foreground"
+            className="mx-auto text-lg md:text-xl text-muted-foreground"
             variants={fadeInUp}
           >
-            "I design and build resilient backend systems that scale with clarity, intention, and impact."
+            "I design and build resilient backend systems that scale — with clarity, intention, and impact."
           </motion.p>
         </motion.div>
         <motion.div 
@@ -98,15 +98,12 @@ export default function Home() {
           </motion.div>
           <motion.div variants={fadeInUp}>
             <Button asChild variant="outline" size="lg">
-              <a href="/Nahom-Zewdu.pdf" download target="_blank" rel="noopener noreferrer">
-                Download CV
-              </a>
-
+              <Link href="/notes">Engineering Notes</Link>
             </Button>
           </motion.div>
           <motion.div variants={fadeInUp}>
             <Button asChild variant="ghost" size="lg">
-              <a href="https://github.com/nahom-zewdu" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://github.com/nahom" target="_blank" rel="noopener noreferrer">GitHub</a>
             </Button>
           </motion.div>
         </motion.div>
