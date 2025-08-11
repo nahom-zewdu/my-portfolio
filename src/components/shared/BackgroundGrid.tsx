@@ -7,6 +7,9 @@ export default function BackgroundGrid() {
   const isDark = resolvedTheme === "dark" || !resolvedTheme;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const lastHoverRef = useRef<{ x: number; y: number; t: number } | null>(null);
+  const sparklesRef = useRef<
+    Array<{ x: number; y: number; created: number; duration: number; radius: number }>
+  >([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -57,6 +60,35 @@ export default function BackgroundGrid() {
         }
       }
 
+      // Autonomous sparkles (increased density/size/duration)
+      if (Math.random() < 0.22 && sparklesRef.current.length < 140) {
+        sparklesRef.current.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          created: now,
+          duration: 1800 + Math.random() * 2200,
+          radius: 2.2 + Math.random() * 3.0,
+        });
+      }
+
+      const isDarkLocal = isDark;
+      sparklesRef.current = sparklesRef.current.filter((s) => {
+        const elapsed = now - s.created;
+        if (elapsed > s.duration) return false;
+        const p = elapsed / s.duration; // 0..1
+        // Ease-in-out for alpha
+        const ease = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p; // smooth
+        const alpha = 0.22 * (1 - Math.abs(0.5 - p) * 2) + 0.08 * ease;
+        const color = isDarkLocal
+          ? `rgba(0, 255, 255, ${alpha})`
+          : `rgba(30, 64, 175, ${alpha})`;
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fill();
+        return true;
+      });
+
       rafId = requestAnimationFrame(draw);
     };
 
@@ -75,24 +107,21 @@ export default function BackgroundGrid() {
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", onMove as any);
+      window.removeEventListener("mousemove", onMove);
     };
-  }, [resolvedTheme]);
+  }, [resolvedTheme, isDark]);
 
-  // Base dotted grid background via CSS
+  // Base dotted background via CSS (no grid lines)
   const baseStyle: React.CSSProperties = {
-    background: isDark ? "#000000" : "#fafafa",
-    backgroundImage:
-      "radial-gradient(circle, rgba(255, 255, 255, 0.2) 1.5px, transparent 1.5px)",
+    background: isDark ? "#0b0c0f" : "#f6f8fb",
+    backgroundImage: isDark
+      ? "radial-gradient(circle, rgba(255,255,255,0.22) 1.6px, transparent 1.6px)"
+      : "radial-gradient(circle, rgba(13, 27, 61, 0.25) 2px, transparent 2px)",
     backgroundSize: "30px 30px",
     backgroundPosition: "0 0",
   };
 
-  if (!isDark) {
-    // Light mode: darker dots on light base
-    baseStyle.backgroundImage =
-      "radial-gradient(circle, rgba(0, 0, 0, 0.18) 1.5px, transparent 1.5px)";
-  }
+  // baseStyle set above per theme
 
   return (
     <div className="fixed inset-0 -z-10">
