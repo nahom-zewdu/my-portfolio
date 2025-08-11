@@ -1,24 +1,33 @@
 import { motion } from "framer-motion";
+import InteractiveCard from "@/components/shared/InteractiveCard";
 
 const experiences = [
   {
     org: "Eskalate (Backend Intern)",
-    tech: ["Go", "gRPC", "REST", "MongoDB", "JWT", "Docker"],
+    tech: ["Go", "gRPC", "PostgreSQL"],
     bullets: [
       "Built and optimized microservices for high-throughput data pipelines.",
-      "Designed and implemented RESTFUL APIs for internal tooling.",
+      "Designed and implemented gRPC APIs for internal tooling.",
       "Improved system observability with custom metrics and tracing."
     ]
   },
   {
     org: "A2SV (Software Engineering Trainee)",
-    tech: ["Python", "Algorithms", "System Design", "Agile Practices", "Collaboration"],
+    tech: ["Python", "Algorithms", "System Design"],
     bullets: [
       "Completed intensive training in algorithms and system design.",
-      "Collaborated on backend projects with a focus on code quality and testing.",
-      "Solved 800+ algorithm problems on platforms like LeetCode and Codeforces.",
+      "Collaborated on backend projects with a focus on code quality and testing."
     ]
   },
+  {
+    org: "Tigat (Automation System)",
+    tech: ["Node.js", "MongoDB", "Docker"],
+    bullets: [
+      "Developed automation for a subscription-based service platform.",
+      "Implemented CI/CD pipelines and containerized deployments.",
+      "Reduced manual ops by 80% through workflow automation."
+    ]
+  }
 ];
 
 const containerVariants = {
@@ -44,7 +53,7 @@ const itemVariants = {
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="max-w-3xl mx-auto py-20 px-4">
+    <section id="experience" className="relative z-0 max-w-3xl mx-auto py-20 px-4">
       <motion.h2 
         className="text-3xl font-bold mb-6"
         initial={{ opacity: 0, y: 30 }}
@@ -59,27 +68,26 @@ export default function ExperienceSection() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.2 }}
       >
-        {experiences.map((exp, index) => (
+        {experiences.map((exp, idx) => (
           <motion.li 
-            key={exp.org} 
-            className="bg-card rounded-2xl shadow p-6"
+            key={exp.org}
             variants={itemVariants}
-            whileHover={{ 
-              y: -4,
-              transition: { duration: 0.3 }
-            }}
           >
-            <div className="flex flex-wrap gap-2 items-center mb-2">
-              <span className="font-semibold text-lg">{exp.org}</span>
-              <span className="flex gap-1 text-xs font-mono text-muted-foreground">
-                {exp.tech.map(t => <span key={t} className="bg-accent px-2 py-0.5 rounded">{t}</span>)}
-              </span>
-            </div>
-            <ul className="list-disc list-inside text-sm pl-2 text-muted-foreground">
-              {exp.bullets.map((b, i) => <li key={i}>{b}</li>)}
-            </ul>
+            <InteractiveCard tiltDefault={idx % 2 === 0 ? "left" : "right"}>
+              <div className="rounded-2xl p-6 bg-transparent border-0 shadow-none">
+                <div className="flex flex-wrap gap-2 items-center mb-2">
+                  <span className="font-semibold text-lg">{exp.org}</span>
+                  <span className="flex gap-1 text-xs font-mono text-muted-foreground">
+                    {exp.tech.map(t => <span key={t} className="bg-accent/40 px-2 py-0.5 rounded">{t}</span>)}
+                  </span>
+                </div>
+                <ul className="list-disc list-inside text-sm pl-2 text-muted-foreground">
+                  {exp.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                </ul>
+              </div>
+            </InteractiveCard>
           </motion.li>
         ))}
       </motion.ul>
