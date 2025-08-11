@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import Background from "@/components/shared/Background";
 import BrandMark from "@/components/BrandMark";
 import BackgroundInteractive from "@/components/shared/BackgroundInteractive";
+import GeometricBackground from "@/components/shared/GeometricBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,8 +33,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <Background />
-          <BackgroundInteractive />
+          <GeometricBackground />
           <BrandMark />
           <Navbar />
           <main className="flex-1 pt-20">
