@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import TypewriterText from "@/components/TypewriterText";
 
@@ -26,40 +25,15 @@ const staggerContainer = {
 };
 
 export default function Home() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const [spot, setSpot] = useState<{ x: number; y: number } | null>(null);
-
   return (
     <>
       <motion.section
         id="hero"
-        ref={heroRef}
-        className="relative z-0 flex flex-col items-center justify-center min-h-[70vh] gap-8 text-center px-4 overflow-hidden pb-12"
-        onMouseMove={e => {
-          const rect = heroRef.current?.getBoundingClientRect();
-          if (!rect) return;
-          setSpot({
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
-          });
-        }}
-        onMouseLeave={() => setSpot(null)}
+        className="relative flex flex-col items-center justify-center min-h-[70vh] gap-8 text-center px-4 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Spotlight effect */}
-        <div
-          className="pointer-events-none absolute inset-0 -z-10 transition-opacity duration-500"
-          style={
-            spot !== null
-              ? {
-                  opacity: 1,
-                  background: `radial-gradient(600px circle at ${spot.x}px ${spot.y}px, rgba(255,255,255,0.10), transparent 80%)`,
-                }
-              : { opacity: 0 }
-          }
-        />
         <motion.div 
           className="space-y-6 max-w-3xl mx-auto"
           variants={fadeInUp}
