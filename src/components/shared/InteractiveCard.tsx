@@ -44,11 +44,11 @@ export default function InteractiveCard({ children, className, tiltDefault = "le
   return (
     <motion.div
       ref={ref}
-      className={cn("rounded-2xl transition-transform will-change-transform", className)}
+      className={cn("group rounded-2xl transition-transform will-change-transform", className)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       initial={false}
-      whileHover={reduce ? undefined : { scale: 1.02 }}
+      whileHover={reduce ? undefined : { scale: 1.03 }}
       whileTap={reduce ? undefined : { scale: 0.985 }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
       style={{
@@ -58,21 +58,14 @@ export default function InteractiveCard({ children, className, tiltDefault = "le
     >
       <div
         className={cn(
-          "relative overflow-hidden rounded-2xl border backdrop-blur-md",
-          // Glassmorphism base
-          "bg-white/8 dark:bg-white/6",
+          "relative overflow-hidden rounded-2xl border backdrop-blur-md ring-1 ring-white/10 group-hover:ring-cyan-400/30",
+          // Pure glass: no background fill
+          "bg-transparent",
           "border-white/15 dark:border-white/12",
-          "shadow-sm hover:shadow-md transition-colors"
+          "shadow-sm group-hover:shadow-lg transition-all"
         )}
       >
-        {/* Subtle gradient overlay (theme-aware) */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-80 dark:opacity-70"
-          style={{
-            background: `linear-gradient(135deg, rgba(255,0,128,0.08), rgba(0,255,255,0.06))`,
-          }}
-          aria-hidden="true"
-        />
+        {/* No overlays: pure glass */}
         <div className="relative">{children}</div>
       </div>
     </motion.div>
