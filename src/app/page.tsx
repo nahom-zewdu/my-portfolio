@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import TypewriterText from "@/components/TypewriterText";
 
@@ -25,10 +26,13 @@ const staggerContainer = {
 };
 
 export default function Home() {
+  const heroRef = useRef<HTMLDivElement>(null);
+
   return (
     <>
       <motion.section
         id="hero"
+        ref={heroRef}
         className="relative flex flex-col items-center justify-center min-h-[70vh] gap-8 text-center px-4 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
