@@ -1,96 +1,103 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-
-const CELL = 40; // px
+import { useEffect, useRef } from "react";
+import { useTheme } from "next-themes";
 
 export default function BackgroundGrid() {
-  const highlightRef = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark" || !resolvedTheme;
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const lastHoverRef = useRef<{ x: number; y: number; t: number } | null>(null);
 
   useEffect(() => {
-    const el = highlightRef.current;
-    if (!el) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
 
-    let raf: number | null = null;
-    let targetX = -CELL;
-    let targetY = -CELL;
-
-    const move = (e: MouseEvent) => {
-      const x = Math.floor(e.clientX / CELL) * CELL;
-      const y = Math.floor(e.clientY / CELL) * CELL;
-      targetX = x;
-      targetY = y;
-      if (!visible) setVisible(true);
-      if (raf == null) raf = requestAnimationFrame(tick);
+    const resize = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
     };
 
-    const leave = () => {
-      setVisible(false);
+    resize();
+    window.addEventListener("resize", resize);
+
+    let rafId = 0;
+
+    const draw = () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      ctx.clearRect(0, 0, w, h);
+
+      const now = performance.now();
+      const hover = lastHoverRef.current;
+      if (hover) {
+        const elapsed = now - hover.t;
+        const duration = 280; // ms
+        if (elapsed < duration) {
+          const p = 1 - elapsed / duration; // 1 -> 0
+          const radius = 3 + 3 * p; // 6 -> 3 px
+          const alpha = 0.35 * p; // fade out
+          // Theme-aware glow color
+          const glow = isDark ? `rgba(0, 255, 255, ${alpha})` : `rgba(30, 64, 175, ${alpha})`; // cyan / blue-800
+          ctx.beginPath();
+          ctx.fillStyle = glow;
+          ctx.arc(hover.x, hover.y, radius, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          lastHoverRef.current = null;
+        }
+      }
+
+      rafId = requestAnimationFrame(draw);
     };
 
-    const tick = () => {
-      if (!el) return;
-      // Snap instantly to reduce jank; small easing could be added if desired
-      const transform = `translate(${targetX}px, ${targetY}px) ${visible && !reduce ? "translateY(-4px) scale(1.05)" : "scale(1)"}`;
-      el.style.transform = transform;
-      raf = null;
+    rafId = requestAnimationFrame(draw);
+
+    const onMove = (e: MouseEvent) => {
+      // Map to nearest grid cell center
+      const cell = 30; // 30px grid
+      const x = Math.floor(e.clientX / cell) * cell + cell / 2;
+      const y = Math.floor(e.clientY / cell) * cell + cell / 2;
+      lastHoverRef.current = { x, y, t: performance.now() };
     };
 
-    window.addEventListener("mousemove", move, { passive: true });
-    window.addEventListener("mouseleave", leave);
+    window.addEventListener("mousemove", onMove, { passive: true });
+
     return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("mousemove", move as any);
-      window.removeEventListener("mouseleave", leave as any);
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", onMove as any);
     };
-  }, [visible]);
+  }, [resolvedTheme]);
+
+  // Base dotted grid background via CSS
+  const baseStyle: React.CSSProperties = {
+    background: isDark ? "#000000" : "#fafafa",
+    backgroundImage:
+      "radial-gradient(circle, rgba(255, 255, 255, 0.2) 1.5px, transparent 1.5px)",
+    backgroundSize: "30px 30px",
+    backgroundPosition: "0 0",
+  };
+
+  if (!isDark) {
+    // Light mode: darker dots on light base
+    baseStyle.backgroundImage =
+      "radial-gradient(circle, rgba(0, 0, 0, 0.18) 1.5px, transparent 1.5px)";
+  }
 
   return (
-    <div className="fixed inset-0 -z-10 pointer-events-none">
-      {/* Base black grid background */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "#000000",
-          backgroundImage:
-            "linear-gradient(to right, rgba(75,85,99,0.4) 1px, transparent 1px)," +
-            "linear-gradient(to bottom, rgba(75,85,99,0.4) 1px, transparent 1px)",
-          backgroundSize: `${CELL}px ${CELL}px`,
-          backgroundPosition: "0 0",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Highlight box that snaps to hovered cell */}
-      <div
-        ref={highlightRef}
-        className="absolute top-0 left-0 w-[40px] h-[40px] rounded-sm opacity-0 transition-all duration-200 ease-out"
-        style={{
-          boxShadow: visible ? "0 0 10px rgba(255,255,255,0.4)" : "none",
-          backgroundImage: visible
-            ? "radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px)"
-            : "none",
-          backgroundSize: "6px 6px",
-        }}
-      />
-
-      {/* Control opacity via a tiny overlay, to avoid pointer events */}
-      <style jsx global>{`
-        [data-bg-highlight] { opacity: 0; }
-      `}</style>
-
-      {/* Sync opacity via a small inline style change */}
-      <OpacityController elRef={highlightRef} show={visible} />
+    <div className="fixed inset-0 -z-10">
+      <div className="absolute inset-0 pointer-events-none" style={baseStyle} aria-hidden="true" />
+      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" aria-hidden="true" />
     </div>
   );
-}
-
-function OpacityController({ elRef, show }: { elRef: React.MutableRefObject<HTMLDivElement | null>; show: boolean }) {
-  useEffect(() => {
-    if (!elRef.current) return;
-    elRef.current.style.opacity = show ? "1" : "0";
-  }, [show, elRef]);
-  return null;
 }
