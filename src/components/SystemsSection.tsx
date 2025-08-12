@@ -1,3 +1,4 @@
+"use client";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import InteractiveCard from "@/components/shared/InteractiveCard";
@@ -60,6 +61,8 @@ const cardVariants = {
 };
 
 export default function SystemsSection() {
+  const rotations = ["rotate-[-2deg]", "rotate-[1.5deg]", "rotate-[-1deg]", "rotate-[2.5deg]", "rotate-[-1.5deg]", "rotate-[1deg]"];
+  const lifts = ["-translate-y-0.5", "translate-y-0", "-translate-y-1", "translate-y-0.5", "-translate-y-0.5", "translate-y-0"];
   return (
     <section id="systems" className="relative z-0 max-w-5xl mx-auto py-20 px-4">
       <motion.h2 
@@ -69,7 +72,7 @@ export default function SystemsSection() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        Systems I've Built
+        Systems I&apos;ve Built
       </motion.h2>
       <motion.div 
         className="grid gap-8 md:grid-cols-2"
@@ -80,7 +83,10 @@ export default function SystemsSection() {
       >
         {projects.map((proj, idx) => (
           <motion.div key={proj.title} variants={cardVariants}>
-            <InteractiveCard tiltDefault={idx % 2 === 0 ? "left" : "right"}>
+            <InteractiveCard
+              tiltDefault={idx % 2 === 0 ? "left" : "right"}
+              className={`${rotations[idx % rotations.length]} ${lifts[idx % lifts.length]} transition-transform duration-300 hover:rotate-0 hover:-translate-y-1`}
+            >
               <Card className="rounded-2xl h-full bg-transparent border-0 shadow-none">
                 <CardHeader>
                   <CardTitle>{proj.title}</CardTitle>
