@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import InteractiveCard from "@/components/shared/InteractiveCard";
 
@@ -55,7 +56,7 @@ export default function ExperienceSection() {
   return (
     <section id="experience" className="relative z-0 max-w-3xl mx-auto py-20 px-4">
       <motion.h2 
-        className="text-3xl font-bold mb-6"
+        className="text-3xl font-bold mb-6 text-primary"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
