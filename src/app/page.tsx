@@ -6,10 +6,10 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import TypewriterText from "@/components/TypewriterText";
 
-const SystemsSection = dynamic(() => import("@/components/SystemsSection"));
-const AboutSection = dynamic(() => import("@/components/AboutSection"));
-const ExperienceSection = dynamic(() => import("@/components/ExperienceSection"));
-const ContactSection = dynamic(() => import("@/components/ContactSection"));
+const SystemsSection = dynamic(() => import("@/components/SystemsSection"), { ssr: false });
+const AboutSection = dynamic(() => import("@/components/AboutSection"), { ssr: false });
+const ExperienceSection = dynamic(() => import("@/components/ExperienceSection"), { ssr: false });
+const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: false });
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -45,7 +45,7 @@ export default function Home() {
           animate="animate"
         >
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold tracking-tight"
+            className="text-4xl md:text-6xl font-bold tracking-tight text-primary"
             variants={fadeInUp}
           >
             Nahom
@@ -57,10 +57,10 @@ export default function Home() {
             className="text-xl md:text-2xl font-mono text-muted-foreground"
           />
           <motion.p 
-            className="mx-auto text-lg md:text-xl text-muted-foreground"
+            className="mx-auto text-lg md:text-xl text-foreground/80"
             variants={fadeInUp}
           >
-            "I design and build resilient backend systems that scale — with clarity, intention, and impact."
+            &quot;I design and build resilient backend systems that scale — with clarity, intention, and impact.&quot;
           </motion.p>
         </motion.div>
         <motion.div 
