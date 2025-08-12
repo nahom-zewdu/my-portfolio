@@ -115,9 +115,9 @@ export default function BackgroundGrid() {
   const baseStyle: React.CSSProperties = {
     background: isDark ? "#0b0c0f" : "#f6f8fb",
     backgroundImage: isDark
-      ? "radial-gradient(circle, rgba(255,255,255,0.22) 1.6px, transparent 1.6px)"
-      : "radial-gradient(circle, rgba(13, 27, 61, 0.25) 2px, transparent 2px)",
-    backgroundSize: "30px 30px",
+      ? "radial-gradient(circle, rgba(255,255,255,0.22) 1.25px, transparent 1.25px)"
+      : "radial-gradient(circle, rgba(13, 27, 61, 0.25) 1.6px, transparent 1.6px)",
+    backgroundSize: "26px 26px",
     backgroundPosition: "0 0",
   };
 
