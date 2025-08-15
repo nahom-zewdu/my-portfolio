@@ -6,7 +6,6 @@ export default function BackgroundGrid() {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark" || !resolvedTheme;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  // Glowing line state following the grid dots
   const targetRef = useRef<{ x: number; y: number } | null>(null);
   const lineRef = useRef<{ x: number; y: number } | null>(null);
   const sparklesRef = useRef<
@@ -49,21 +48,21 @@ export default function BackgroundGrid() {
       ctx.clearRect(0, 0, w, h);
 
       const now = performance.now();
-      // Draw smooth glowing line moving between nearest grid dots
+      // Thin glowing line that smoothly follows the cursor between dot centers
       if (targetRef.current) {
         if (!lineRef.current) {
           lineRef.current = { x: targetRef.current.x, y: targetRef.current.y };
         }
         const prev = { x: lineRef.current.x, y: lineRef.current.y };
-        const speed = 0.15; // lerp factor for smoothness
+        const speed = 0.12; // lower is smoother
         lineRef.current.x += (targetRef.current.x - lineRef.current.x) * speed;
         lineRef.current.y += (targetRef.current.y - lineRef.current.y) * speed;
         const stroke = isDark ? "rgba(0, 255, 255, 0.45)" : "rgba(30, 64, 175, 0.45)";
         ctx.save();
         ctx.strokeStyle = stroke;
-        ctx.lineWidth = 1.2;
+        ctx.lineWidth = 0.8;
         ctx.shadowColor = isDark ? "rgba(0,255,255,0.6)" : "rgba(30,64,175,0.55)";
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = 10;
         ctx.beginPath();
         ctx.moveTo(prev.x, prev.y);
         ctx.lineTo(lineRef.current.x, lineRef.current.y);
@@ -71,14 +70,14 @@ export default function BackgroundGrid() {
         ctx.restore();
       }
 
-      // Autonomous sparkles (increased density/size/duration)
-      if (Math.random() < 0.06 && sparklesRef.current.length < 50) {
+      // Autonomous sparkles (reduced simultaneous density)
+      if (Math.random() < 0.08 && sparklesRef.current.length < 60) {
         sparklesRef.current.push({
           x: Math.random() * w,
           y: Math.random() * h,
           created: now,
-          duration: 1600 + Math.random() * 1600,
-          radius: 1.8 + Math.random() * 2.2,
+          duration: 1600 + Math.random() * 1800,
+          radius: 1.8 + Math.random() * 2.6,
         });
       }
 
@@ -89,7 +88,7 @@ export default function BackgroundGrid() {
         const p = elapsed / s.duration; // 0..1
         // Ease-in-out for alpha
         const ease = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p; // smooth
-        const alpha = 0.18 * (1 - Math.abs(0.5 - p) * 2) + 0.06 * ease;
+        const alpha = 0.22 * (1 - Math.abs(0.5 - p) * 2) + 0.08 * ease;
         const color = isDarkLocal
           ? `rgba(0, 255, 255, ${alpha})`
           : `rgba(30, 64, 175, ${alpha})`;
@@ -106,8 +105,8 @@ export default function BackgroundGrid() {
     rafId = requestAnimationFrame(draw);
 
     const onMove = (e: MouseEvent) => {
-      // Map to nearest grid dot center
-      const cell = 26; // must match CSS backgroundSize
+      // Snap to the nearest dot center (must match CSS backgroundSize)
+      const cell = 26;
       const x = Math.floor(e.clientX / cell) * cell + cell / 2;
       const y = Math.floor(e.clientY / cell) * cell + cell / 2;
       targetRef.current = { x, y };
@@ -127,16 +126,14 @@ export default function BackgroundGrid() {
     return null;
   }
 
-  // Base dotted background via CSS (no grid lines) — avoid using background shorthand
+  // Base dotted background via CSS (no grid lines)
   const baseStyle: React.CSSProperties = {
-    backgroundColor: isDark ? "#0b0c0f" : "#f6f8fb",
+    background: isDark ? "#0b0c0f" : "#f6f8fb",
     backgroundImage: isDark
       ? "radial-gradient(circle, rgba(255,255,255,0.22) 1.25px, transparent 1.25px)"
       : "radial-gradient(circle, rgba(13, 27, 61, 0.25) 1.6px, transparent 1.6px)",
-    backgroundRepeat: "repeat",
     backgroundSize: "26px 26px",
-    backgroundPositionX: "0px",
-    backgroundPositionY: "0px",
+    backgroundPosition: "0 0",
   };
 
   // baseStyle set above per theme
