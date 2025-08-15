@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import ModeToggle from "@/components/mode-toggle";
+import BrandMark from "@/components/BrandMark";
 
 const navLinks = [
   { href: "#hero", label: "Home" },
@@ -21,7 +22,6 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 8);
-      // Scrollspy logic
       const offsets = navLinks.map(link => {
         if (!link.href.startsWith("#")) return 0;
         const el = document.getElementById(link.href.slice(1));
@@ -35,50 +35,54 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-shadow ${scrolled ? "shadow-md bg-background/80 backdrop-blur" : "bg-background/95"}`} aria-label="Main navigation">
-      <div className="max-w-5xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
-        <Link href="#hero" className="font-bold text-lg tracking-tight">Nahom</Link>
-        <div className="hidden md:flex gap-2 items-center">
-          {navLinks.map(link => (
-            <Button
-              key={link.href}
-              asChild
-              variant={active === link.href ? "secondary" : "ghost"}
-              className="rounded-2xl px-4 py-2 text-base font-medium transition-colors"
-            >
-              <Link href={link.href} scroll={link.href.startsWith("#")}>{link.label}</Link>
-            </Button>
-          ))}
-          <ModeToggle />
-        </div>
-        <div className="md:hidden flex items-center gap-2">
-          <ModeToggle />
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon" aria-label="Open menu">
-                <Menu className="w-6 h-6" />
+    <div className="pointer-events-none fixed top-3 left-0 right-0 z-40">
+      <nav className={`pointer-events-auto mx-auto w-[60%] max-w-5xl rounded-2xl border border-border/60 ${scrolled ? "shadow-md bg-background/70 backdrop-blur" : "bg-background/60 backdrop-blur-sm"}`} aria-label="Main navigation">
+        <div className="flex items-center justify-between px-3 md:px-4 py-2 md:py-3">
+          <div className="hidden md:flex gap-3 items-center">
+            <BrandMark />
+            {navLinks.map(link => (
+              <Button
+                key={link.href}
+                asChild
+                variant={active === link.href ? "secondary" : "ghost"}
+                className="rounded-2xl px-3 md:px-4 py-2 text-sm md:text-base font-medium transition-colors"
+              >
+                <Link href={link.href} scroll={link.href.startsWith("#")}>{link.label}</Link>
               </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-64 flex flex-col gap-4 pt-8">
-              {navLinks.map(link => (
-                <Button
-                  key={link.href}
-                  asChild
-                  variant={active === link.href ? "secondary" : "ghost"}
-                  className="rounded-2xl px-4 py-2 text-lg font-medium w-full justify-start"
-                  onClick={() => {
-                    if (link.href.startsWith("#")) {
-                      document.getElementById(link.href.slice(1))?.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                >
-                  <Link href={link.href} scroll={link.href.startsWith("#")}>{link.label}</Link>
-                </Button>
-              ))}
-            </SheetContent>
-          </Sheet>
+            ))}
+          </div>
+          <div className="md:hidden" />
+          <div className="flex items-center gap-2">
+            <ModeToggle />
+            <div className="md:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="icon" aria-label="Open menu">
+                    <Menu className="w-6 h-6" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-64 flex flex-col gap-4 pt-8">
+                  {navLinks.map(link => (
+                    <Button
+                      key={link.href}
+                      asChild
+                      variant={active === link.href ? "secondary" : "ghost"}
+                      className="rounded-2xl px-4 py-2 text-lg font-medium w-full justify-start"
+                      onClick={() => {
+                        if (link.href.startsWith("#")) {
+                          document.getElementById(link.href.slice(1))?.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
+                    >
+                      <Link href={link.href} scroll={link.href.startsWith("#")}>{link.label}</Link>
+                    </Button>
+                  ))}
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 } 
