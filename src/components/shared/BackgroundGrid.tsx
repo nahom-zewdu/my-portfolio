@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 
 export default function BackgroundGrid() {
@@ -10,6 +10,12 @@ export default function BackgroundGrid() {
   const sparklesRef = useRef<
     Array<{ x: number; y: number; created: number; duration: number; radius: number }>
   >([]);
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -109,7 +115,12 @@ export default function BackgroundGrid() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMove);
     };
-  }, [resolvedTheme, isDark]);
+  }, [resolvedTheme, isDark, mounted]);
+
+  // Avoid SSR/client style mismatches: render only after mount
+  if (!mounted) {
+    return null;
+  }
 
   // Base dotted background via CSS (no grid lines)
   const baseStyle: React.CSSProperties = {
