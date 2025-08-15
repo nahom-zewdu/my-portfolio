@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ModeToggle from "@/components/mode-toggle";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "next-themes";
-import Background from "@/components/shared/Background";
 import BrandMark from "@/components/BrandMark";
-import BackgroundInteractive from "@/components/shared/BackgroundInteractive";
-import BackgroundPattern from "@/components/shared/BackgroundPattern";
 import BackgroundGrid from "@/components/shared/BackgroundGrid";
 
 const geistSans = Geist({

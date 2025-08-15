@@ -33,7 +33,7 @@ export default function BackgroundPattern() {
 
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => {
-      window.removeEventListener("mousemove", onMove as any);
+      window.removeEventListener("mousemove", onMove);
     };
   }, [resolvedTheme]);
 

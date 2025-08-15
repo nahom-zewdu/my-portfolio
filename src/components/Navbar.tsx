@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import ModeToggle from "@/components/mode-toggle";
-import BrandMark from "@/components/BrandMark";
 
 const navLinks = [
   { href: "#hero", label: "Home" },
@@ -38,8 +37,7 @@ export default function Navbar() {
     <div className="pointer-events-none fixed top-3 left-0 right-0 z-40">
       <nav className={`pointer-events-auto mx-auto w-[60%] max-w-5xl rounded-2xl border border-border/60 ${scrolled ? "shadow-md bg-background/70 backdrop-blur" : "bg-background/60 backdrop-blur-sm"}`} aria-label="Main navigation">
         <div className="flex items-center justify-between px-3 md:px-4 py-2 md:py-3">
-          <div className="hidden md:flex gap-3 items-center">
-            <BrandMark />
+          <div className="hidden md:flex gap-2 items-center">
             {navLinks.map(link => (
               <Button
                 key={link.href}

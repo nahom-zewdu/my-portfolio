@@ -1,3 +1,4 @@
+"use client";
 import { Mail, Github, Linkedin, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import InteractiveCard from "@/components/shared/InteractiveCard";
