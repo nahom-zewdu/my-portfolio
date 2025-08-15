@@ -60,7 +60,7 @@ export default function Home() {
             className="mx-auto text-lg md:text-xl text-foreground/80"
             variants={fadeInUp}
           >
-            &quot;I design and build resilient backend systems that scale — with clarity, intention, and impact.&quot;
+            &quot;I design and build resilient backend systems that scale with clarity, intention, and impact.&quot;
           </motion.p>
         </motion.div>
         <motion.div 
