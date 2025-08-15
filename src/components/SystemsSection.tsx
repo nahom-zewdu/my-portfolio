@@ -5,38 +5,57 @@ import InteractiveCard from "@/components/shared/InteractiveCard";
 
 const projects = [
   {
-    title: "Distributed Task Queue",
-    overview: "A resilient, horizontally scalable task queue for background jobs.",
-    stack: ["Go", "Redis", "PostgreSQL"],
+    title: "Nuvom - Distributed Task Queue",
+    overview:
+      "A developer-first, plugin-powered background job system for Python. Built for flexibility, clarity, and production-readiness without infrastructure overhead.",
+    stack: ["Pydantic", "Prometheus", "Python", "Redis", "msgpack", "typer"],
     decisions: [
-      "Used Redis streams for reliable delivery.",
-      "Worker auto-scaling based on queue depth.",
-      "Graceful failure handling and retries."
+      "Plugin-first design: queues, storages, metrics, and hooks are all swappable.",
+      "Supports job metadata, retries, tracebacks, rich CLI inspection and static task discovery.",
     ],
-    Diagram: () => <div className="w-full h-24 bg-muted/40 rounded-xl flex items-center justify-center text-muted-foreground">[Diagram]</div>
+    links: [
+      { label: "Live", url: "https://nuvom.netlify.app/" },
+      { label: "GitHub", url: "https://github.com/nahom-zewdu/Nuvom" },
+    ],
   },
   {
-    title: "Event-Driven Notification System",
-    overview: "Real-time notifications with event sourcing and fan-out.",
-    stack: ["Node.js", "Kafka", "MongoDB"],
+    title: "GuessIt - Multiplayer Drawing Game",
+    overview:
+      "A real-time, turn-based game built with Django Channels and WebSockets for seamless live interaction.",
+    stack: ["JavaScript", "Python", "PostgreSQL", "Redis", "WebSockets", "AsyncIO"],
     decisions: [
-      "Event sourcing for auditability.",
-      "Kafka for high-throughput fan-out.",
-      "Idempotent delivery logic."
+      "WebSocket architecture via Django Channels and Redis layer.",
+      "ASGI-first deployment with Daphne and Docker for scalability.",
     ],
-    Diagram: () => <div className="w-full h-24 bg-muted/40 rounded-xl flex items-center justify-center text-muted-foreground">[Diagram]</div>
+    links: [
+      { label: "Live", url: "https://guezzit.netlify.app/" },
+      { label: "GitHub", url: "https://github.com/nahom-zewdu/Online-Multiplayer-Drawing-Game" },
+    ],
   },
   {
-    title: "API Gateway with Rate Limiting",
-    overview: "A secure, performant API gateway with global rate limiting.",
-    stack: ["Go", "Nginx", "Redis"],
+    title: "EthLink – Group Chat Platform",
+    overview:
+      "A minimalist web-based discussion app with room-based conversations and user profiles.",
+    stack: ["Python", "JavaScript", "Django", "HTML", "CSS"],
     decisions: [
-      "Token bucket algorithm for rate limiting.",
-      "Centralized auth and logging.",
-      "Zero-downtime config reloads."
+      "Searchable discussion rooms categorized by topic.",
+      "Authenticated room creation with optional descriptions.",
+      "User profiles with edit support and activity tracking.",
     ],
-    Diagram: () => <div className="w-full h-24 bg-muted/40 rounded-xl flex items-center justify-center text-muted-foreground">[Diagram]</div>
-  }
+    links: [{ label: "GitHub", url: "https://github.com/nahom-zewdu/Ethlink" }],
+  },
+  {
+    title: "Loan Tracker Application",
+    overview:
+      "A scalable backend service for managing loan workflows with secure JWT authentication, email verification, and admin controls.",
+    stack: ["Go (Gin)", "JWT", "MongoDB", "SMTP"],
+    decisions: [
+      "Layered architecture with clean separation: domain, repository, use case, delivery.",
+      "Robust JWT-based auth and middleware for secure API access.",
+      "Flexible MongoDB data modeling with performant query filtering for admin workflows.",
+    ],
+    links: [{ label: "GitHub", url: "https://github.com/nahom-zewdu/loan-tracker" }],
+  },
 ];
 
 const containerVariants = {
@@ -99,7 +118,21 @@ export default function SystemsSection() {
                   <ul className="list-disc list-inside text-sm pl-2">
                     {proj.decisions.map((d, j) => <li key={j}>{d}</li>)}
                   </ul>
-                  <proj.Diagram />
+                  {"links" in proj && Array.isArray((proj as any).links) && (
+                    <div className="flex gap-3 pt-2">
+                      {(proj as any).links.map((link: { label: string; url: string }) => (
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-medium text-primary hover:underline"
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </InteractiveCard>
