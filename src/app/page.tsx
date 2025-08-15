@@ -76,12 +76,12 @@ export default function Home() {
           </motion.div>
           <motion.div variants={fadeInUp}>
             <Button asChild variant="outline" size="lg">
-              <Link href="/notes">Engineering Notes</Link>
+              <a href="/Nahom-Zewdu.pdf" download>Download CV</a>
             </Button>
           </motion.div>
           <motion.div variants={fadeInUp}>
             <Button asChild variant="ghost" size="lg">
-              <a href="https://github.com/nahom" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://github.com/nahom-zewdu" target="_blank" rel="noopener noreferrer">GitHub</a>
             </Button>
           </motion.div>
         </motion.div>
