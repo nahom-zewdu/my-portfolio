@@ -3,7 +3,16 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { motion } from "framer-motion";
 import InteractiveCard from "@/components/shared/InteractiveCard";
 
-const projects = [
+type ProjectLink = { label: string; url: string };
+type Project = {
+  title: string;
+  overview: string;
+  stack: string[];
+  decisions: string[];
+  links?: ProjectLink[];
+};
+
+const projects: Project[] = [
   {
     title: "Nuvom - Distributed Task Queue",
     overview:
@@ -118,9 +127,9 @@ export default function SystemsSection() {
                   <ul className="list-disc list-inside text-sm pl-2">
                     {proj.decisions.map((d, j) => <li key={j}>{d}</li>)}
                   </ul>
-                  {"links" in proj && Array.isArray((proj as any).links) && (
+                  {proj.links && proj.links.length > 0 && (
                     <div className="flex gap-3 pt-2">
-                      {(proj as any).links.map((link: { label: string; url: string }) => (
+                      {proj.links.map((link) => (
                         <a
                           key={link.url}
                           href={link.url}
