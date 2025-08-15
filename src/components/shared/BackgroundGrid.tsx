@@ -6,7 +6,9 @@ export default function BackgroundGrid() {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark" || !resolvedTheme;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const lastHoverRef = useRef<{ x: number; y: number; t: number } | null>(null);
+  // Glowing line state following the grid dots
+  const targetRef = useRef<{ x: number; y: number } | null>(null);
+  const lineRef = useRef<{ x: number; y: number } | null>(null);
   const sparklesRef = useRef<
     Array<{ x: number; y: number; created: number; duration: number; radius: number }>
   >([]);
@@ -47,33 +49,36 @@ export default function BackgroundGrid() {
       ctx.clearRect(0, 0, w, h);
 
       const now = performance.now();
-      const hover = lastHoverRef.current;
-      if (hover) {
-        const elapsed = now - hover.t;
-        const duration = 280; // ms
-        if (elapsed < duration) {
-          const p = 1 - elapsed / duration; // 1 -> 0
-          const radius = 3 + 3 * p; // 6 -> 3 px
-          const alpha = 0.35 * p; // fade out
-          // Theme-aware glow color
-          const glow = isDark ? `rgba(0, 255, 255, ${alpha})` : `rgba(30, 64, 175, ${alpha})`; // cyan / blue-800
-          ctx.beginPath();
-          ctx.fillStyle = glow;
-          ctx.arc(hover.x, hover.y, radius, 0, Math.PI * 2);
-          ctx.fill();
-        } else {
-          lastHoverRef.current = null;
+      // Draw smooth glowing line moving between nearest grid dots
+      if (targetRef.current) {
+        if (!lineRef.current) {
+          lineRef.current = { x: targetRef.current.x, y: targetRef.current.y };
         }
+        const prev = { x: lineRef.current.x, y: lineRef.current.y };
+        const speed = 0.15; // lerp factor for smoothness
+        lineRef.current.x += (targetRef.current.x - lineRef.current.x) * speed;
+        lineRef.current.y += (targetRef.current.y - lineRef.current.y) * speed;
+        const stroke = isDark ? "rgba(0, 255, 255, 0.45)" : "rgba(30, 64, 175, 0.45)";
+        ctx.save();
+        ctx.strokeStyle = stroke;
+        ctx.lineWidth = 1.2;
+        ctx.shadowColor = isDark ? "rgba(0,255,255,0.6)" : "rgba(30,64,175,0.55)";
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        ctx.moveTo(prev.x, prev.y);
+        ctx.lineTo(lineRef.current.x, lineRef.current.y);
+        ctx.stroke();
+        ctx.restore();
       }
 
       // Autonomous sparkles (increased density/size/duration)
-      if (Math.random() < 0.22 && sparklesRef.current.length < 140) {
+      if (Math.random() < 0.06 && sparklesRef.current.length < 50) {
         sparklesRef.current.push({
           x: Math.random() * w,
           y: Math.random() * h,
           created: now,
-          duration: 1800 + Math.random() * 2200,
-          radius: 2.2 + Math.random() * 3.0,
+          duration: 1600 + Math.random() * 1600,
+          radius: 1.8 + Math.random() * 2.2,
         });
       }
 
@@ -84,7 +89,7 @@ export default function BackgroundGrid() {
         const p = elapsed / s.duration; // 0..1
         // Ease-in-out for alpha
         const ease = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p; // smooth
-        const alpha = 0.22 * (1 - Math.abs(0.5 - p) * 2) + 0.08 * ease;
+        const alpha = 0.18 * (1 - Math.abs(0.5 - p) * 2) + 0.06 * ease;
         const color = isDarkLocal
           ? `rgba(0, 255, 255, ${alpha})`
           : `rgba(30, 64, 175, ${alpha})`;
@@ -101,11 +106,11 @@ export default function BackgroundGrid() {
     rafId = requestAnimationFrame(draw);
 
     const onMove = (e: MouseEvent) => {
-      // Map to nearest grid cell center
-      const cell = 30; // 30px grid
+      // Map to nearest grid dot center
+      const cell = 26; // must match CSS backgroundSize
       const x = Math.floor(e.clientX / cell) * cell + cell / 2;
       const y = Math.floor(e.clientY / cell) * cell + cell / 2;
-      lastHoverRef.current = { x, y, t: performance.now() };
+      targetRef.current = { x, y };
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
@@ -122,14 +127,16 @@ export default function BackgroundGrid() {
     return null;
   }
 
-  // Base dotted background via CSS (no grid lines)
+  // Base dotted background via CSS (no grid lines) — avoid using background shorthand
   const baseStyle: React.CSSProperties = {
-    background: isDark ? "#0b0c0f" : "#f6f8fb",
+    backgroundColor: isDark ? "#0b0c0f" : "#f6f8fb",
     backgroundImage: isDark
       ? "radial-gradient(circle, rgba(255,255,255,0.22) 1.25px, transparent 1.25px)"
       : "radial-gradient(circle, rgba(13, 27, 61, 0.25) 1.6px, transparent 1.6px)",
+    backgroundRepeat: "repeat",
     backgroundSize: "26px 26px",
-    backgroundPosition: "0 0",
+    backgroundPositionX: "0px",
+    backgroundPositionY: "0px",
   };
 
   // baseStyle set above per theme
