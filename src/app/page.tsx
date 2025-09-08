@@ -4,6 +4,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 import { motion } from "framer-motion";
+import TechStack from "@/components/TechStack";
 
 const SystemsSection = dynamic(() => import("@/components/SystemsSection"), { ssr: false });
 const AboutSection = dynamic(() => import("@/components/AboutSection"), { ssr: false });
@@ -79,6 +80,7 @@ export default function Home() {
           </motion.div>
         </motion.div>
       </motion.section>
+      <TechStack />
       <SystemsSection />
       <AboutSection />
       <ExperienceSection />
