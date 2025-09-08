@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "next-themes";
 import BrandMark from "@/components/BrandMark";
 import BackgroundGrid from "@/components/shared/BackgroundGrid";
@@ -29,11 +28,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <BackgroundGrid />
           <BrandMark />
-          <Navbar />
-          <main className="flex-1 pt-20">
+          <main className="flex-1 pt-8">
         {children}
           </main>
           <footer className="w-full flex flex-col items-center gap-2 py-6 border-t border-border text-xs text-muted-foreground">
