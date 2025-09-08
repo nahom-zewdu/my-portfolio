@@ -50,7 +50,7 @@ export default function Home() {
             Nahom | Backend Engineer
           </motion.h1>
           <motion.p 
-            className="mx-auto text-lg md:text-xl text-foreground/80"
+            className="mx-auto text-xl md:text-2xl text-foreground/80"
             variants={fadeInUp}
           >
             I build scalable backend systems with Python and Go, focusing on distributed scheduling, real-time applications, and developer tools.
