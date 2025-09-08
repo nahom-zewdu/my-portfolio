@@ -1,8 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 
-const hoverClasses = "transition-transform duration-200 will-change-transform hover:scale-105";
-const glowClasses = "hover:drop-shadow-[0_0_12px_rgba(0,200,255,0.35)] dark:hover:drop-shadow-[0_0_12px_rgba(0,200,255,0.45)]";
+// Keep hover effects local to each icon to avoid section overflow
 
 const icons: Array<{ alt: string; src: string }> = [
   { alt: "Python", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
@@ -20,32 +19,23 @@ const icons: Array<{ alt: string; src: string }> = [
 export default function TechStack() {
   return (
     <section id="stack" className="relative z-0 py-16 px-4">
-      <motion.h2
-        className="text-2xl font-semibold text-center mb-8"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        viewport={{ once: true }}
-      >
-        Tech Stack
-      </motion.h2>
-
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-center gap-5 md:gap-7 overflow-x-auto whitespace-nowrap">
+        <div className="flex items-center justify-center gap-5 md:gap-7 overflow-x-auto whitespace-nowrap px-2">
           {icons.map((icon) => (
             <a
               key={icon.alt}
               href={icon.src}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${hoverClasses} ${glowClasses}`}
+              className="group inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl hover:-translate-y-0.5 transition-transform duration-200 hover:ring-1 hover:ring-cyan-400/30"
               aria-label={icon.alt}
               title={icon.alt}
+              style={{ contain: "paint" }}
             >
               <img
                 src={icon.src}
                 alt={icon.alt}
-                className="h-10 w-10 md:h-12 md:w-12 object-contain select-none"
+                className="h-8 w-8 md:h-10 md:w-10 object-contain select-none transition-transform duration-200 group-hover:scale-110"
                 loading="lazy"
                 decoding="async"
               />
