@@ -45,22 +45,22 @@ export default function Home() {
           animate="animate"
         >
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold tracking-tight text-primary"
+            className="text-5xl md:text-7xl font-bold tracking-tight text-primary"
             variants={fadeInUp}
           >
-            Nahom | Backend Engineer
+            Nahom
           </motion.h1>
           <TypewriterText 
-            text="I build scalable backend systems with Python and Go, focusing on distributed scheduling, real-time applications, and developer tools."
-            speed={50}
-            delay={0.3}
-            className="text-xl md:text-2xl font-mono text-muted-foreground"
+            text="Backend engineer"
+            speed={60}
+            delay={0.4}
+            className="text-lg md:text-xl font-mono text-muted-foreground"
           />
           <motion.p 
-            className="mx-auto text-lg md:text-xl text-foreground/80"
+            className="mx-auto text-base md:text-lg text-foreground/80"
             variants={fadeInUp}
           >
-            &quot;I design and build resilient backend systems that scale with clarity, intention, and impact.&quot;
+            I build scalable backend systems with Python and Go, focusing on distributed scheduling, real-time applications, and developer tools.
           </motion.p>
         </motion.div>
         <motion.div 
