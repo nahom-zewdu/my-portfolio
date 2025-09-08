@@ -45,10 +45,10 @@ export default function Home() {
           animate="animate"
         >
           <motion.h1 
-            className="text-5xl md:text-7xl font-bold tracking-tight text-primary"
+            className="text-4xl md:text-6xl font-bold tracking-tight text-primary"
             variants={fadeInUp}
           >
-            Nahom
+            Nahom | Backend Engineer
           </motion.h1>
           <TypewriterText 
             text="Backend engineer"
