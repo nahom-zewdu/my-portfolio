@@ -48,12 +48,12 @@ export default function Home() {
             className="text-4xl md:text-6xl font-bold tracking-tight text-primary"
             variants={fadeInUp}
           >
-            Nahom
+            Nahom | Backend Engineer
           </motion.h1>
           <TypewriterText 
-            text="Backend Engineer & System Design Practitioner"
-            speed={80}
-            delay={0.5}
+            text="I build scalable backend systems with Python and Go, focusing on distributed scheduling, real-time applications, and developer tools."
+            speed={50}
+            delay={0.3}
             className="text-xl md:text-2xl font-mono text-muted-foreground"
           />
           <motion.p 
