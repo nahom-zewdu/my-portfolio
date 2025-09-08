@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import BrandMark from "@/components/BrandMark";
+import ModeToggle from "@/components/mode-toggle";
 import BackgroundGrid from "@/components/shared/BackgroundGrid";
 
 const geistSans = Geist({
@@ -31,6 +32,9 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <BackgroundGrid />
           <BrandMark />
+          <div className="fixed top-3 right-4 z-50">
+            <ModeToggle />
+          </div>
           <main className="flex-1 pt-8">
         {children}
           </main>
