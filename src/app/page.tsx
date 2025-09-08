@@ -4,7 +4,6 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import TypewriterText from "@/components/TypewriterText";
 
 const SystemsSection = dynamic(() => import("@/components/SystemsSection"), { ssr: false });
 const AboutSection = dynamic(() => import("@/components/AboutSection"), { ssr: false });
@@ -50,14 +49,8 @@ export default function Home() {
           >
             Nahom | Backend Engineer
           </motion.h1>
-          <TypewriterText 
-            text="Backend engineer"
-            speed={60}
-            delay={0.4}
-            className="text-lg md:text-xl font-mono text-muted-foreground"
-          />
           <motion.p 
-            className="mx-auto text-base md:text-lg text-foreground/80"
+            className="mx-auto text-lg md:text-xl text-foreground/80"
             variants={fadeInUp}
           >
             I build scalable backend systems with Python and Go, focusing on distributed scheduling, real-time applications, and developer tools.
