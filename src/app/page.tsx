@@ -65,7 +65,7 @@ export default function Home() {
         >
           <motion.div variants={fadeInUp}>
             <Button asChild size="lg">
-              <Link href="#systems">View Projects</Link>
+              <Link href="#projects">View Projects</Link>
             </Button>
           </motion.div>
           <motion.div variants={fadeInUp}>
