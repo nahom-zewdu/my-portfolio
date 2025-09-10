@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
-import { ArrowRight, FileText, Github, Globe } from "lucide-react";
+import { ArrowRight, FileText, Github, Globe, CheckCircle } from "lucide-react";
 
 type ProjectLink = { label: string; url: string };
 type Project = {
@@ -137,46 +137,71 @@ export default function SystemsSection() {
                       View More <ArrowRight className="w-4 h-4" />
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-2xl bg-background/80 backdrop-blur-md border-border/50">
+                  <DialogContent className="sm:max-w-2xl bg-background/75 backdrop-blur-xl border-border/50 shadow-xl">
                     <DialogHeader>
-                      <DialogTitle className="text-2xl">{proj.title}</DialogTitle>
-                      <DialogDescription>{proj.overview}</DialogDescription>
+                      <DialogTitle className="text-2xl font-bold">{proj.title}</DialogTitle>
+                      <DialogDescription className="text-muted-foreground">{proj.overview}</DialogDescription>
                     </DialogHeader>
 
-                    <div className="mt-2 grid gap-5">
-                      <div className="aspect-video w-full rounded-lg border bg-muted/50 flex items-center justify-center text-sm text-muted-foreground">
+                    <div className="mt-2 grid gap-6">
+                      <div className="aspect-video w-full rounded-xl border bg-muted/40 shadow-sm flex items-center justify-center text-sm text-muted-foreground">
                         Architecture Diagram
                       </div>
 
-                      <ul className="list-disc list-inside space-y-1 text-sm">
-                        {proj.decisions.slice(0, 4).map((d, i) => (
-                          <li key={i}>{d}</li>
+                      <div className="space-y-2">
+                        {proj.decisions.slice(0, 6).map((d, i) => (
+                          <div key={i} className="flex items-start gap-2 text-sm">
+                            <CheckCircle className="w-4 h-4 mt-0.5 text-primary/80" />
+                            <span className="text-foreground/90">{d}</span>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {proj.stack.map((s) => (
+                          <div
+                            key={s}
+                            className="w-9 h-9 rounded-md bg-accent/40 text-muted-foreground flex items-center justify-center text-[10px] uppercase transition shadow-xs ring-1 ring-transparent hover:ring-ring/50 hover:shadow-md"
+                            title={s}
+                          >
+                            {s.slice(0, 3)}
+                          </div>
+                        ))}
+                      </div>
 
                       {proj.links && proj.links.length > 0 && (
                         <div className="flex flex-wrap gap-3 pt-1">
-                          {proj.links.map((link) => {
-                            const label = link.label.toLowerCase();
-                            const Icon = label.includes("git")
-                              ? Github
-                              : label.includes("live")
-                              ? Globe
-                              : FileText;
-                            return (
-                              <a
-                                key={link.url}
-                                href={link.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
-                              >
-                                <Icon className="w-4 h-4" /> {link.label}
-                              </a>
-                            );
-                          })}
+                          {proj.links
+                            .slice()
+                            .sort((a, b) => {
+                              const order = (l: string) =>
+                                l.toLowerCase().includes("git") ? 0 : l.toLowerCase().includes("docs") ? 1 : 2;
+                              return order(a.label) - order(b.label);
+                            })
+                            .map((link) => {
+                              const label = link.label.toLowerCase();
+                              const isGit = label.includes("git");
+                              const isDocs = label.includes("doc");
+                              const Icon = isGit ? Github : label.includes("live") ? Globe : FileText;
+                              return (
+                                <Button
+                                  key={link.url}
+                                  asChild
+                                  variant={isGit ? "default" : "outline"}
+                                  className="h-9"
+                                >
+                                  <a href={link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                                    <Icon className="w-4 h-4" /> {isGit ? "GitHub" : isDocs ? "Docs" : "Live Demo"}
+                                  </a>
+                                </Button>
+                              );
+                            })}
                         </div>
                       )}
+
+                      <div className="pt-1 text-right">
+                        <a href="#" className="text-xs text-muted-foreground hover:text-primary transition-colors">Read Full Case Study →</a>
+                      </div>
                     </div>
                   </DialogContent>
                 </Dialog>
