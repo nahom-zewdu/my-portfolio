@@ -1,7 +1,9 @@
 "use client";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
-import InteractiveCard from "@/components/shared/InteractiveCard";
+import { ArrowRight, FileText, Github, Globe } from "lucide-react";
 
 type ProjectLink = { label: string; url: string };
 type Project = {
@@ -10,6 +12,7 @@ type Project = {
   stack: string[];
   decisions: string[];
   links?: ProjectLink[];
+  diagramUrl?: string;
 };
 
 const projects: Project[] = [
@@ -89,62 +92,96 @@ const cardVariants = {
 };
 
 export default function SystemsSection() {
-  const rotations = ["rotate-[-2deg]", "rotate-[1.5deg]", "rotate-[-1deg]", "rotate-[2.5deg]", "rotate-[-1.5deg]", "rotate-[1deg]"];
-  const lifts = ["-translate-y-0.5", "translate-y-0", "-translate-y-1", "translate-y-0.5", "-translate-y-0.5", "translate-y-0"];
   return (
-    <section id="systems" className="relative z-0 max-w-5xl mx-auto py-20 px-4">
-      <motion.h2 
-        className="text-3xl font-bold mb-10"
+    <section id="projects" className="relative z-0 max-w-5xl mx-auto py-20 px-4">
+      <motion.h2
+        className="text-3xl font-bold mb-10 text-center"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        Systems I&apos;ve Built
+        Projects
       </motion.h2>
-      <motion.div 
-        className="grid gap-8 md:grid-cols-2"
+      <motion.div
+        className="grid gap-6 md:grid-cols-2"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {projects.map((proj, idx) => (
+        {projects.map((proj) => (
           <motion.div key={proj.title} variants={cardVariants}>
-            <InteractiveCard
-              tiltDefault={idx % 2 === 0 ? "left" : "right"}
-              className={`${rotations[idx % rotations.length]} ${lifts[idx % lifts.length]} transition-transform duration-300 hover:rotate-0 hover:-translate-y-1`}
-            >
-              <Card className="rounded-2xl h-full bg-transparent border-0 shadow-none">
-                <CardHeader>
-                  <CardTitle>{proj.title}</CardTitle>
-                  <CardDescription>{proj.overview}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex flex-wrap gap-2 text-xs font-mono text-muted-foreground">
-                    {proj.stack.map(s => <span key={s} className="bg-accent/40 px-2 py-0.5 rounded">{s}</span>)}
-                  </div>
-                  <ul className="list-disc list-inside text-sm pl-2">
-                    {proj.decisions.map((d, j) => <li key={j}>{d}</li>)}
-                  </ul>
-                  {proj.links && proj.links.length > 0 && (
-                    <div className="flex gap-3 pt-2">
-                      {proj.links.map((link) => (
-                        <a
-                          key={link.url}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm font-medium text-primary hover:underline"
-                        >
-                          {link.label}
-                        </a>
-                      ))}
+            <Card className="rounded-xl h-full border bg-card/80 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
+              <CardContent className="p-6 space-y-5">
+                <div className="space-y-1">
+                  <h3 className="text-xl font-bold">{proj.title}</h3>
+                  <p className="text-muted-foreground line-clamp-2">{proj.overview}</p>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {proj.stack.map((s) => (
+                    <div
+                      key={s}
+                      className="w-8 h-8 rounded-md bg-accent/40 text-muted-foreground flex items-center justify-center text-[10px] uppercase"
+                      title={s}
+                    >
+                      {s.slice(0, 3)}
                     </div>
-                  )}
-                </CardContent>
-              </Card>
-            </InteractiveCard>
+                  ))}
+                </div>
+
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="ghost" className="px-0 text-primary hover:text-primary/90 hover:bg-transparent inline-flex items-center gap-2">
+                      View More <ArrowRight className="w-4 h-4" />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-2xl bg-background/80 backdrop-blur-md border-border/50">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl">{proj.title}</DialogTitle>
+                      <DialogDescription>{proj.overview}</DialogDescription>
+                    </DialogHeader>
+
+                    <div className="mt-2 grid gap-5">
+                      <div className="aspect-video w-full rounded-lg border bg-muted/50 flex items-center justify-center text-sm text-muted-foreground">
+                        Architecture Diagram
+                      </div>
+
+                      <ul className="list-disc list-inside space-y-1 text-sm">
+                        {proj.decisions.slice(0, 4).map((d, i) => (
+                          <li key={i}>{d}</li>
+                        ))}
+                      </ul>
+
+                      {proj.links && proj.links.length > 0 && (
+                        <div className="flex flex-wrap gap-3 pt-1">
+                          {proj.links.map((link) => {
+                            const label = link.label.toLowerCase();
+                            const Icon = label.includes("git")
+                              ? Github
+                              : label.includes("live")
+                              ? Globe
+                              : FileText;
+                            return (
+                              <a
+                                key={link.url}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+                              >
+                                <Icon className="w-4 h-4" /> {link.label}
+                              </a>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </CardContent>
+            </Card>
           </motion.div>
         ))}
       </motion.div>
