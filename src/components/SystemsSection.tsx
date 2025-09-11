@@ -120,7 +120,7 @@ export default function SystemsSection() {
                         </div>
                       </div>
 
-                      <div className="sticky bottom-0 w-full border-t bg-background/80 backdrop-blur px-6 py-4">
+                      <div className="row-start-3 sticky bottom-0 w-full border-t bg-background/90 backdrop-blur px-6 py-4">
                         <div className="flex items-center justify-between gap-3">
                           {proj.links && proj.links.length > 0 && (
                             <div className="flex flex-wrap gap-2">

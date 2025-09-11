@@ -18,13 +18,15 @@ export function toSlug(input: string): string {
 
 export const projects: Project[] = [
   {
-    title: "Nuvom - Distributed Task Queue",
+    title: "Nuvom — Distributed Task Scheduling for Python",
     overview:
-      "A developer-first, plugin-powered background job system for Python. Built for flexibility, clarity, and production-readiness without infrastructure overhead.",
+      "A lightweight, production-ready task execution engine that replaces infrastructure-heavy systems like Celery. Designed for solo developers and plugin authors, with a focus on clarity, speed, and extensibility.",
     stack: ["Pydantic", "Prometheus", "Python", "Redis", "msgpack", "typer"],
     decisions: [
-      "Plugin-first design: queues, storages, metrics, and hooks are all swappable.",
-      "Supports job metadata, retries, tracebacks, rich CLI inspection and static task discovery.",
+      "Dynamic scheduling (one-off, periodic, cron, interval)",
+      "Resilient worker pool with retries, backoff, and fault isolation",
+      "Pluggable storage and queue backends (Redis-free)",
+      "Static task discovery using Python ASTs",
     ],
     links: [
       { label: "Live", url: "https://nuvom.netlify.app/" },
