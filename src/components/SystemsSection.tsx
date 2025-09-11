@@ -71,10 +71,10 @@ export default function SystemsSection() {
                   {proj.stack.map((s) => (
                     <div
                       key={s}
-                      className="w-8 h-8 rounded-md bg-accent/40 text-muted-foreground flex items-center justify-center text-[10px] uppercase"
+                      className="px-3 h-8 rounded-md bg-accent/40 text-foreground/80 flex items-center justify-center text-xs"
                       title={s}
                     >
-                      {s.slice(0, 3)}
+                      {s}
                     </div>
                   ))}
                 </div>
@@ -85,8 +85,8 @@ export default function SystemsSection() {
                       View More <ArrowRight className="w-4 h-4" />
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-xl md:max-w-2xl bg-background/75 backdrop-blur-xl border-border/50 shadow-xl p-0">
-                    <div className="max-h-[80vh] grid grid-rows-[auto,1fr,auto]">
+                  <DialogContent className="sm:max-w-xl md:max-w-2xl bg-background/75 backdrop-blur-xl border-border/50 shadow-xl p-0 overflow-hidden">
+                    <div className="h-[80vh] grid grid-rows-[auto,1fr,auto]">
                       <div className="px-6 pt-6">
                         <DialogHeader>
                           <DialogTitle className="text-2xl font-bold">{proj.title}</DialogTitle>
@@ -120,7 +120,7 @@ export default function SystemsSection() {
                         </div>
                       </div>
 
-                      <div className="row-start-3 sticky bottom-0 w-full border-t bg-background/90 backdrop-blur px-6 py-4">
+                      <div className="row-start-3 w-full border-t bg-background/90 backdrop-blur px-6 py-4">
                         <div className="flex items-center justify-between gap-3">
                           {proj.links && proj.links.length > 0 && (
                             <div className="flex flex-wrap gap-2">
