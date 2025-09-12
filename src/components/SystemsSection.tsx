@@ -89,7 +89,7 @@ export default function SystemsSection() {
 
                       <div className="overflow-y-auto px-6 pb-4 mt-2 grid gap-6">
                         <div className="aspect-video w-full rounded-xl border bg-muted/40 shadow-sm flex items-center justify-center text-sm text-muted-foreground">
-                          Architecture Diagram
+                          System Diagram / Screenshot
                         </div>
 
                         <div className="space-y-2">
@@ -101,16 +101,26 @@ export default function SystemsSection() {
                           ))}
                         </div>
 
-                        <div className="flex flex-wrap gap-2 pt-1">
-                          {proj.stack.map((s) => (
-                            <div
-                              key={s}
-                              className="px-3 h-9 rounded-md bg-accent/40 text-foreground/80 flex items-center justify-center text-xs transition shadow-xs ring-1 ring-transparent hover:ring-ring/50 hover:shadow-md"
-                            >
-                              {s}
-                            </div>
-                          ))}
-                        </div>
+                        {proj.title.toLowerCase().startsWith("guessit") && (
+                          <div className="space-y-1 text-sm">
+                            {(proj as any).modalTech?.map((line: string) => (
+                              <div key={line} className="text-foreground/90">{line}</div>
+                            ))}
+                          </div>
+                        )}
+
+                        {!proj.title.toLowerCase().startsWith("guessit") && (
+                          <div className="flex flex-wrap gap-2 pt-1">
+                            {proj.stack.map((s) => (
+                              <div
+                                key={s}
+                                className="px-3 h-9 rounded-md bg-accent/40 text-foreground/80 flex items-center justify-center text-xs transition shadow-xs ring-1 ring-transparent hover:ring-ring/50 hover:shadow-md"
+                              >
+                                {s}
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
 
                       <div className="row-start-3 w-full border-t bg-background/90 backdrop-blur px-6 py-4">

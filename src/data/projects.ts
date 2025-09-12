@@ -6,6 +6,7 @@ export type Project = {
   decisions: string[];
   links?: ProjectLink[];
   diagramUrl?: string;
+  modalTech?: string[];
 };
 
 export function toSlug(input: string): string {
@@ -34,13 +35,23 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "GuessIt - Multiplayer Drawing Game",
+    title: "Guessit — Real-Time Multiplayer Drawing Game",
     overview:
-      "A real-time, turn-based game built with Django Channels and WebSockets for seamless live interaction.",
+      "A real-time game platform built on Django Channels and WebSockets, enabling synchronized gameplay, live chat, and scalable room management.",
     stack: ["JavaScript", "Python", "PostgreSQL", "Redis", "WebSockets", "AsyncIO"],
     decisions: [
-      "WebSocket architecture via Django Channels and Redis layer.",
-      "ASGI-first deployment with Daphne and Docker for scalability.",
+      "Real-time multiplayer sync using WebSockets + Django Channels",
+      "Dynamic game room management with public/private modes",
+      "Turn-based state machine for drawing/guessing cycles",
+      "Redis-backed channel layer for low-latency communication",
+      "Scalable deployment with Docker + Railway",
+    ],
+    modalTech: [
+      "Backend: Django, Django REST Framework, Django Channels",
+      "Database: PostgreSQL",
+      "Real-time Communication: WebSockets (Daphne/Uvicorn)",
+      "Frontend: HTML, CSS, JavaScript (Vanilla)",
+      "Deployment & Tools: Railway, Docker, dj-database-url, python-decouple/django-environ, WhiteNoise",
     ],
     links: [
       { label: "Live", url: "https://guezzit.netlify.app/" },
