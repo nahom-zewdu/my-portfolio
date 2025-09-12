@@ -5,8 +5,9 @@ export function generateStaticParams() {
   return projects.map(p => ({ slug: toSlug(p.title) }));
 }
 
-export default function ProjectCaseStudyPage({ params }: { params: { slug: string } }) {
-  const project = projects.find(p => toSlug(p.title) === params.slug);
+export default async function ProjectCaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = projects.find(p => toSlug(p.title) === slug);
   if (!project) return notFound();
 
   return (

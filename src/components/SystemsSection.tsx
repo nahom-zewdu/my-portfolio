@@ -7,14 +7,7 @@ import { ArrowRight, FileText, Github, Globe, CheckCircle } from "lucide-react";
 import { projects, toSlug } from "@/data/projects";
 
 type ProjectLink = { label: string; url: string };
-type Project = {
-  title: string;
-  overview: string;
-  stack: string[];
-  decisions: string[];
-  links?: ProjectLink[];
-  diagramUrl?: string;
-};
+type Project = never;
 
 // Projects data moved to src/data/projects.ts
 

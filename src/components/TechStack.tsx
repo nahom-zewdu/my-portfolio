@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 
 // Keep hover effects local to each icon to avoid section overflow
 
