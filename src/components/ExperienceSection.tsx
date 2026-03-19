@@ -4,9 +4,8 @@ import InteractiveCard from "@/components/shared/InteractiveCard";
 
 const experiences = [
   {
-    company: "BE Technology",
-    role: "Backend & Systems Engineer",
-    stack: "Python, GCP, n8n, Automation Systems",
+    org: "BE Technology — Backend & Systems Engineer",
+    tech: ["Python", "GCP", "n8n", "Automation Systems"],
     bullets: [
       "Built a lead generation automation system integrating Google Maps, business registries, and external APIs, delivering structured prospects into Notion with automated follow-ups.",
       "Designed and deployed a fully automated news-to-video pipeline using n8n, ElevenLabs, JSON2Video, Cloudinary, and Google Drive, reducing content production time from hours to minutes.",
@@ -16,9 +15,8 @@ const experiences = [
     ]
   },
   {
-    company: "Eskalate",
-    role: "Backend Engineering Intern (Team Lead)",
-    stack: "Go, MongoDB, Docker, JWT, Clean Architecture",
+    org: "Eskalate — Backend Engineering Intern (Team Lead)",
+    tech: ["Go", "MongoDB", "Docker", "JWT", "Clean Architecture"],
     bullets: [
       "Led a team of 3 engineers to design and deliver a backend system ahead of schedule.",
       "Built modular REST APIs in Go using Clean Architecture, improving maintainability and scalability.",
@@ -28,9 +26,8 @@ const experiences = [
     ]
   },
   {
-    company: "A2SV",
-    role: "Software Engineering Trainee",
-    stack: "Python, Go, Algorithms, System Design",
+    org: "A2SV — Software Engineering Trainee",
+    tech: ["Python", "Go", "Algorithms", "System Design"],
     bullets: [
       "Completed intensive training in data structures, algorithms, and system design.",
       "Solved 700+ problems across competitive programming platforms.",
@@ -81,15 +78,16 @@ export default function ExperienceSection() {
       >
         {experiences.map((exp, idx) => (
           <motion.li 
-            key={`${exp.company}-${exp.role}`}
+            key={exp.org}
             variants={itemVariants}
           >
             <InteractiveCard tiltDefault={idx % 2 === 0 ? "left" : "right"}>
               <div className="rounded-2xl p-6 bg-transparent border-0 shadow-none">
                 <div className="mb-4 space-y-1">
-                  <h3 className="text-lg font-semibold text-foreground">{exp.company}</h3>
-                  <p className="text-sm md:text-base text-primary/90">{exp.role}</p>
-                  <p className="text-xs md:text-sm text-muted-foreground">{exp.stack}</p>
+                  <h3 className="text-lg font-semibold text-foreground">{exp.org}</h3>
+                  <p className="text-xs md:text-sm text-muted-foreground">
+                    {exp.tech.join(", ")}
+                  </p>
                 </div>
                 <ul className="list-disc list-inside text-sm pl-2 space-y-2 text-muted-foreground">
                   {exp.bullets.map((b, i) => <li key={i}>{b}</li>)}
