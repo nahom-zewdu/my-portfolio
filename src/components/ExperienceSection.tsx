@@ -4,29 +4,37 @@ import InteractiveCard from "@/components/shared/InteractiveCard";
 
 const experiences = [
   {
-    org: "Eskalate (Backend Intern)",
-    tech: ["Go", "gRPC", "PostgreSQL"],
+    company: "BE Technology",
+    role: "Backend & Systems Engineer",
+    stack: "Python, GCP, n8n, Automation Systems",
     bullets: [
-      "Built and optimized microservices for high-throughput data pipelines.",
-      "Designed and implemented gRPC APIs for internal tooling.",
-      "Improved system observability with custom metrics and tracing."
+      "Built a lead generation automation system integrating Google Maps, business registries, and external APIs, delivering structured prospects into Notion with automated follow-ups.",
+      "Designed and deployed a fully automated news-to-video pipeline using n8n, ElevenLabs, JSON2Video, Cloudinary, and Google Drive, reducing content production time from hours to minutes.",
+      "Deployed and operated backend services on Google Cloud Platform (Compute Engine, Cloud Functions, GCS).",
+      "Implemented event-driven workflows and async processing pipelines for scalable automation.",
+      "Managed IAM roles, cloud resources, and billing to ensure cost-efficient and reliable system operation."
     ]
   },
   {
-    org: "A2SV (Software Engineering Trainee)",
-    tech: ["Python", "Algorithms", "System Design"],
+    company: "Eskalate",
+    role: "Backend Engineering Intern (Team Lead)",
+    stack: "Go, MongoDB, Docker, JWT, Clean Architecture",
     bullets: [
-      "Completed intensive training in algorithms and system design.",
-      "Collaborated on backend projects with a focus on code quality and testing."
+      "Led a team of 3 engineers to design and deliver a backend system ahead of schedule.",
+      "Built modular REST APIs in Go using Clean Architecture, improving maintainability and scalability.",
+      "Designed and implemented authentication systems using JWT and OAuth.",
+      "Reviewed and approved 15+ pull requests, enforcing architecture standards and code quality.",
+      "Containerized services with Docker and contributed to staging environment setup."
     ]
   },
   {
-    org: "Tigat (Automation System)",
-    tech: ["Node.js", "MongoDB", "Docker"],
+    company: "A2SV",
+    role: "Software Engineering Trainee",
+    stack: "Python, Go, Algorithms, System Design",
     bullets: [
-      "Developed automation for a subscription-based service platform.",
-      "Implemented CI/CD pipelines and containerized deployments.",
-      "Reduced manual ops by 80% through workflow automation."
+      "Completed intensive training in data structures, algorithms, and system design.",
+      "Solved 700+ problems across competitive programming platforms.",
+      "Collaborated on backend-focused projects with emphasis on code quality and testing."
     ]
   }
 ];
@@ -73,18 +81,17 @@ export default function ExperienceSection() {
       >
         {experiences.map((exp, idx) => (
           <motion.li 
-            key={exp.org}
+            key={`${exp.company}-${exp.role}`}
             variants={itemVariants}
           >
             <InteractiveCard tiltDefault={idx % 2 === 0 ? "left" : "right"}>
               <div className="rounded-2xl p-6 bg-transparent border-0 shadow-none">
-                <div className="flex flex-wrap gap-2 items-center mb-2">
-                  <span className="font-semibold text-lg">{exp.org}</span>
-                  <span className="flex gap-1 text-xs font-mono text-muted-foreground">
-                    {exp.tech.map(t => <span key={t} className="bg-accent/40 px-2 py-0.5 rounded">{t}</span>)}
-                  </span>
+                <div className="mb-4 space-y-1">
+                  <h3 className="text-lg font-semibold text-foreground">{exp.company}</h3>
+                  <p className="text-sm md:text-base text-primary/90">{exp.role}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">{exp.stack}</p>
                 </div>
-                <ul className="list-disc list-inside text-sm pl-2 text-muted-foreground">
+                <ul className="list-disc list-inside text-sm pl-2 space-y-2 text-muted-foreground">
                   {exp.bullets.map((b, i) => <li key={i}>{b}</li>)}
                 </ul>
               </div>
