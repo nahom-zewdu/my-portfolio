@@ -13,7 +13,7 @@ export default function AboutSection() {
         viewport={{ once: true }}
       >
         <h2 className="text-3xl font-bold tracking-tight">Nahom Zewdu</h2>
-        <p className="text-lg text-muted-foreground mt-2">Backend Engineer · Addis Ababa, Ethiopia</p>
+        <p className="text-lg text-muted-foreground mt-2">Backend &amp; Systems Engineer · Addis Ababa, Ethiopia</p>
       </motion.div>
 
       {/* Body: left-aligned narrative */}
@@ -26,13 +26,16 @@ export default function AboutSection() {
       >
         <div className="space-y-5 text-base leading-relaxed text-foreground/90">
           <p>
-            I’m a backend engineer and a student at AASTU. I focus on building scalable backend systems using Python and Go, with experience in Django, FastAPI, and Gin.
+            I build real-time systems, automation pipelines, and developer tools using Python and Go, with a focus on scalability, reliability, and clean architecture.
           </p>
           <p>
-            I’ve worked as a backend developer at Eskalate, where I contributed to production-grade backend systems and APIs. I also completed my training at A2SV, earning a certificate in Data Structures and Algorithms after solving more than 700 problems, and collaborating on real-world projects with diverse teams.
+            My work spans backend services, distributed processing, and cloud infrastructure designing systems that handle asynchronous workloads, integrate external services, and operate predictably in production environments. I&apos;ve built everything from task queue systems and real-time applications to automation-heavy pipelines that reduce manual workflows and improve operational efficiency.
           </p>
           <p>
-            I believe in clarity over cleverness, building systems that fail gracefully, and creating tools that make engineering easier and more reliable. My main interests lie in distributed systems, real-time applications, and developer tooling.
+            I&apos;ve worked on systems deployed on Google Cloud Platform, including Compute Engine, Cloud Functions, and GCS, and have experience managing infrastructure, permissions, and cost-aware system design.
+          </p>
+          <p>
+            I&apos;m particularly interested in event-driven systems, developer tooling, and AI-integrated workflows, and I approach engineering with a focus on clarity, practical design decisions, and long-term maintainability.
           </p>
         </div>
       </motion.div>
