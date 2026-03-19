@@ -48,13 +48,13 @@ export default function Home() {
             className="text-4xl md:text-6xl font-bold tracking-tight text-primary"
             variants={fadeInUp}
           >
-            Nahom | Backend Engineer
+            Nahom Zewdu | Backend &amp; Systems Engineer
           </motion.h1>
           <motion.p 
             className="mx-auto text-xl md:text-2xl text-foreground/80"
             variants={fadeInUp}
           >
-            I build scalable backend systems with Python and Go, focusing on distributed scheduling, real-time applications, and developer tools.
+            Building real-time systems, automation pipelines, and cloud-based infrastructure with Python &amp; Go
           </motion.p>
         </motion.div>
         <motion.div 
