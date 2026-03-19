@@ -6,9 +6,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, FileText, Github, Globe, CheckCircle } from "lucide-react";
 import { projects, toSlug } from "@/data/projects";
 
-type ProjectLink = { label: string; url: string };
-type Project = never;
-
 // Projects data moved to src/data/projects.ts
 
 const containerVariants = {
@@ -103,7 +100,7 @@ export default function SystemsSection() {
 
                         {proj.title.toLowerCase().startsWith("guessit") && (
                           <div className="space-y-1 text-sm">
-                            {(proj as any).modalTech?.map((line: string) => (
+                            {proj.modalTech?.map((line) => (
                               <div key={line} className="text-foreground/90">{line}</div>
                             ))}
                           </div>
