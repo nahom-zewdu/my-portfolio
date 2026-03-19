@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import InteractiveCard from "@/components/shared/InteractiveCard";
+import { Card, CardContent } from "@/components/ui/card";
 
 const experiences = [
   {
@@ -76,13 +76,13 @@ export default function ExperienceSection() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {experiences.map((exp, idx) => (
+        {experiences.map((exp) => (
           <motion.li 
             key={exp.org}
             variants={itemVariants}
           >
-            <InteractiveCard tiltDefault={idx % 2 === 0 ? "left" : "right"}>
-              <div className="rounded-2xl p-6 bg-transparent border-0 shadow-none">
+            <Card className="rounded-xl h-full border border-border bg-card/80 backdrop-blur-none shadow-sm hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
                 <div className="mb-4 space-y-1">
                   <h3 className="text-lg font-semibold text-foreground">{exp.org}</h3>
                   <p className="text-xs md:text-sm text-muted-foreground">
@@ -92,8 +92,8 @@ export default function ExperienceSection() {
                 <ul className="list-disc list-inside text-sm pl-2 space-y-2 text-muted-foreground">
                   {exp.bullets.map((b, i) => <li key={i}>{b}</li>)}
                 </ul>
-              </div>
-            </InteractiveCard>
+              </CardContent>
+            </Card>
           </motion.li>
         ))}
       </motion.ul>
