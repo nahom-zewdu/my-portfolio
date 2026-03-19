@@ -1,7 +1,7 @@
 "use client";
 import { Mail, Github, Linkedin, Send } from "lucide-react";
 import { motion } from "framer-motion";
-import InteractiveCard from "@/components/shared/InteractiveCard";
+import { Card, CardContent } from "@/components/ui/card";
 
 const links = [
   { href: "mailto:nahiyo86@gmail.com", label: "Email", icon: Mail },
@@ -43,62 +43,63 @@ export default function ContactSection() {
       >
         Contact
       </motion.h2>
-      <InteractiveCard>
-        <motion.div 
-          className="rounded-2xl p-8 bg-transparent border-0 shadow-none"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <motion.p 
-            className="mb-6 text-muted-foreground"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            Open to collaborating on complex systems problems.
-          </motion.p>
-          <motion.div 
-            className="flex flex-wrap justify-center gap-6 mb-4"
+      <Card className="rounded-xl border border-border bg-card/80 backdrop-blur-none shadow-sm hover:shadow-md transition-shadow">
+        <CardContent className="p-8">
+          <motion.div
             variants={containerVariants}
-          >
-            {links.map(({ href, label, icon: Icon }) => (
-              <motion.a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-lg"
-                variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.1,
-                  transition: { duration: 0.2 }
-                }}
-              >
-                <Icon className="w-6 h-6" />
-                <span className="sr-only">{label}</span>
-              </motion.a>
-            ))}
-          </motion.div>
-          <motion.a 
-            href="mailto:nahiyo86@gmail.com" 
-            className="text-primary underline text-base"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            whileHover={{ 
-              scale: 1.05,
-              transition: { duration: 0.2 }
-            }}
           >
-            nahiyo86@gmail.com
-          </motion.a>
-        </motion.div>
-      </InteractiveCard>
+            <motion.p
+              className="mb-6 text-muted-foreground"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              Open to collaborating on complex systems problems.
+            </motion.p>
+            <motion.div
+              className="flex flex-wrap justify-center gap-6 mb-4"
+              variants={containerVariants}
+            >
+              {links.map(({ href, label, icon: Icon }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-lg"
+                  variants={itemVariants}
+                  whileHover={{
+                    scale: 1.1,
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  <Icon className="w-6 h-6" />
+                  <span className="sr-only">{label}</span>
+                </motion.a>
+              ))}
+            </motion.div>
+            <motion.a
+              href="mailto:nahiyo86@gmail.com"
+              className="text-primary underline text-base"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.2 }
+              }}
+            >
+              nahiyo86@gmail.com
+            </motion.a>
+          </motion.div>
+        </CardContent>
+      </Card>
     </section>
   );
 } 
