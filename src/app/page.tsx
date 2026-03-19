@@ -70,7 +70,13 @@ export default function Home() {
           </motion.div>
           <motion.div variants={fadeInUp}>
             <Button asChild variant="outline" size="lg">
-              <a href="/Nahom-Zewdu.pdf" download>Download CV</a>
+              <a
+                href="https://drive.google.com/file/d/1qd71t0zFsOI34m5-TtbkAZIG67Ybzn6C/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download CV
+              </a>
             </Button>
           </motion.div>
           <motion.div variants={fadeInUp}>
