@@ -1,102 +1,72 @@
 "use client";
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-
-const experiences = [
-  {
-    org: "BE Technology — Backend & Systems Engineer",
-    tech: ["Python", "GCP", "n8n", "Automation Systems"],
-    bullets: [
-      "Built a lead generation automation system integrating Google Maps, business registries, and external APIs, delivering structured prospects into Notion with automated follow-ups.",
-      "Designed and deployed a fully automated news-to-video pipeline using n8n, ElevenLabs, JSON2Video, Cloudinary, and Google Drive, reducing content production time from hours to minutes.",
-      "Deployed and operated backend services on Google Cloud Platform (Compute Engine, Cloud Functions, GCS).",
-      "Implemented event-driven workflows and async processing pipelines for scalable automation.",
-      "Managed IAM roles, cloud resources, and billing to ensure cost-efficient and reliable system operation."
-    ]
-  },
-  {
-    org: "Eskalate — Backend Engineering Intern (Team Lead)",
-    tech: ["Go", "MongoDB", "Docker", "JWT", "Clean Architecture"],
-    bullets: [
-      "Led a team of 3 engineers to design and deliver a backend system ahead of schedule.",
-      "Built modular REST APIs in Go using Clean Architecture, improving maintainability and scalability.",
-      "Designed and implemented authentication systems using JWT and OAuth.",
-      "Reviewed and approved 15+ pull requests, enforcing architecture standards and code quality.",
-      "Containerized services with Docker and contributed to staging environment setup."
-    ]
-  },
-  {
-    org: "A2SV — Software Engineering Trainee",
-    tech: ["Python", "Go", "Algorithms", "System Design"],
-    bullets: [
-      "Completed intensive training in data structures, algorithms, and system design.",
-      "Solved 700+ problems across competitive programming platforms.",
-      "Collaborated on backend-focused projects with emphasis on code quality and testing."
-    ]
-  }
-];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6
-    }
-  }
-};
+import { ExperienceEntry } from "@/components/notebook";
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="relative z-0 max-w-3xl mx-auto py-20 px-4">
-      <motion.h2 
-        className="text-3xl font-bold mb-6 text-primary"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+    <section className="prose-content py-16 px-4">
+      <h1 className="mb-12">Experience</h1>
+
+      <ExperienceEntry
+        title="Backend & Systems Engineer"
+        organization="BE Technology"
+        technologies={["Python", "GCP", "Automation", "Event-driven Systems"]}
       >
-        Experience
-      </motion.h2>
-      <motion.ul 
-        className="space-y-8"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        <p className="mb-4">
+          Designed and built automation systems that integrate external services with structured data pipelines.
+          Core responsibilities included: architecting event-driven workflows, managing cloud infrastructure on GCP,
+          and ensuring cost-efficient operation of production systems.
+        </p>
+        <p className="mb-4">
+          <strong>Systems built:</strong>
+        </p>
+        <ul className="space-y-2 ml-4 mb-4">
+          <li>Lead generation pipeline integrating Google Maps, business registries, and external APIs into Notion</li>
+          <li>Fully automated news-to-video pipeline using n8n, reducing content production time from hours to minutes</li>
+          <li>Event-driven async processing pipelines for scalable automation</li>
+        </ul>
+        <p>
+          <strong>Technical impact:</strong> Reduced manual workflows by orders of magnitude, enabling the team to
+          focus on strategy rather than execution. Established patterns for reliable automation at scale.
+        </p>
+      </ExperienceEntry>
+
+      <ExperienceEntry
+        title="Backend Engineering Intern (Team Lead)"
+        organization="Eskalate"
+        technologies={["Go", "MongoDB", "Docker", "Clean Architecture"]}
       >
-        {experiences.map((exp) => (
-          <motion.li 
-            key={exp.org}
-            variants={itemVariants}
-          >
-            <Card className="rounded-xl h-full border border-border bg-card/80 backdrop-blur-none shadow-sm hover:shadow-md transition-shadow">
-              <CardContent className="p-6">
-                <div className="mb-4 space-y-1">
-                  <h3 className="text-lg font-semibold text-foreground">{exp.org}</h3>
-                  <p className="text-xs md:text-sm text-muted-foreground">
-                    {exp.tech.join(", ")}
-                  </p>
-                </div>
-                <ul className="list-disc list-inside text-sm pl-2 space-y-2 text-muted-foreground">
-                  {exp.bullets.map((b, i) => <li key={i}>{b}</li>)}
-                </ul>
-              </CardContent>
-            </Card>
-          </motion.li>
-        ))}
-      </motion.ul>
+        <p className="mb-4">
+          Led a team of 3 engineers to design and deliver a backend system ahead of schedule. Responsibilities included
+          architecture decisions, code review, and maintaining code quality standards across the codebase.
+        </p>
+        <p className="mb-4">
+          <strong>Systems built:</strong>
+        </p>
+        <ul className="space-y-2 ml-4 mb-4">
+          <li>Modular REST APIs in Go using Clean Architecture principles</li>
+          <li>JWT and OAuth authentication systems</li>
+          <li>Docker containerization and staging environment setup</li>
+        </ul>
+        <p>
+          <strong>Technical impact:</strong> Established architectural patterns that improved maintainability.
+          Reviewed 15+ pull requests, enforcing standards and catching issues early. Project delivered ahead of schedule.
+        </p>
+      </ExperienceEntry>
+
+      <ExperienceEntry
+        title="Software Engineering Trainee"
+        organization="A2SV"
+        technologies={["Python", "Go", "Algorithms", "System Design"]}
+      >
+        <p className="mb-4">
+          Intensive training program focused on building strong fundamentals in data structures, algorithms, and
+          distributed systems thinking.
+        </p>
+        <p>
+          <strong>Outcomes:</strong> Solved 700+ algorithmic problems across competitive programming platforms.
+          Collaborated on backend-focused projects with emphasis on clean code and testing practices.
+        </p>
+      </ExperienceEntry>
     </section>
   );
 } 

@@ -20,7 +20,7 @@ export default function ExperienceEntry({
       <div className="mb-4">
         <h3 className="text-xl font-semibold leading-normal">{title}</h3>
         <p className="text-base text-muted-foreground mt-1">{organization}</p>
-        {period && <p className="text-sm text-muted-foreground mt-1">{period}</p>}
+        {period && <p className="text-sm text-[var(--accent-amber)] mt-1 font-medium">{period}</p>}
       </div>
 
       {technologies && technologies.length > 0 && (

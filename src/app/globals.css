@@ -77,6 +77,10 @@
   --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
+
+  /* Muted amber/brass accent for sparse emphasis */
+  --accent-amber: oklch(0.72 0.06 63);
+  --accent-amber-dark: oklch(0.65 0.08 63);
 }
 
 .dark {
@@ -111,6 +115,10 @@
   --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
+
+  /* Muted amber/brass accent for dark mode */
+  --accent-amber: oklch(0.78 0.06 63);
+  --accent-amber-dark: oklch(0.72 0.08 63);
 }
 
 html, body {
@@ -224,11 +232,12 @@ html, body {
 
   /* Links */
   a {
-    @apply text-foreground underline;
+    @apply text-[var(--accent-amber)] underline;
+    transition: opacity 150ms ease-out;
   }
 
   a:hover {
-    @apply opacity-75;
+    @apply opacity-80;
   }
 
   /* Code */
