@@ -1,96 +1,67 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import { useRef } from "react";
-import { motion } from "framer-motion";
-import TechStack from "@/components/TechStack";
-
-const SystemsSection = dynamic(() => import("@/components/SystemsSection"), { ssr: false });
-const AboutSection = dynamic(() => import("@/components/AboutSection"), { ssr: false });
-const ExperienceSection = dynamic(() => import("@/components/ExperienceSection"), { ssr: false });
-const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: false });
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: "easeOut" }
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
 
 export default function Home() {
-  const heroRef = useRef<HTMLDivElement>(null);
-
   return (
-    <>
-      <motion.section
-        id="hero"
-        ref={heroRef}
-        className="relative flex flex-col items-center justify-center min-h-[70vh] gap-8 text-center px-4 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <motion.div 
-          className="space-y-6 max-w-3xl mx-auto"
-          variants={fadeInUp}
-          initial="initial"
-          animate="animate"
-        >
-          <motion.h1 
-            className="text-4xl md:text-6xl font-bold tracking-tight text-primary"
-            variants={fadeInUp}
-          >
-            Nahom Zewdu | Backend &amp; Systems Engineer
-          </motion.h1>
-          <motion.p 
-            className="mx-auto text-xl md:text-2xl text-foreground/80"
-            variants={fadeInUp}
-          >
-            Building real-time systems, automation pipelines, and cloud-based infrastructure with Python &amp; Go
-          </motion.p>
-        </motion.div>
-        <motion.div 
-          className="flex flex-col sm:flex-row gap-4 justify-center mt-6"
-          variants={staggerContainer}
-          initial="initial"
-          animate="animate"
-        >
-          <motion.div variants={fadeInUp}>
-            <Button asChild size="lg">
-              <Link href="#projects">View Projects</Link>
-            </Button>
-          </motion.div>
-          <motion.div variants={fadeInUp}>
-            <Button asChild variant="outline" size="lg">
-              <a
-                href="https://drive.google.com/file/d/1qd71t0zFsOI34m5-TtbkAZIG67Ybzn6C/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Download CV
-              </a>
-            </Button>
-          </motion.div>
-          <motion.div variants={fadeInUp}>
-            <Button asChild variant="ghost" size="lg">
-              <a href="https://github.com/nahom-zewdu" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </Button>
-          </motion.div>
-        </motion.div>
-      </motion.section>
-      <TechStack />
-      <SystemsSection />
-      <AboutSection />
-      <ExperienceSection />
-      <ContactSection />
-    </>
+    <div className="prose-content py-16 px-4 min-h-screen flex flex-col justify-center">
+      <h1 className="text-4xl font-bold tracking-tight leading-tight mb-8">
+        Backend & Systems Engineer
+      </h1>
+
+      <p className="text-xl leading-relaxed text-foreground/90 mb-12 max-w-2xl">
+        I build difficult systems. Real-time platforms, automation pipelines, and infrastructure that operates
+        predictably at scale. This site documents my work, thinking, and current focus.
+      </p>
+
+      <nav className="space-y-6">
+        <div>
+          <h2 className="text-lg font-semibold mb-4">Start here</h2>
+          <ul className="space-y-3">
+            <li>
+              <Link href="/introduction" className="text-base">
+                Introduction
+              </Link>
+            </li>
+            <li>
+              <Link href="/current-work" className="text-base">
+                Current Work
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="text-lg font-semibold mb-4">Explore</h2>
+          <ul className="space-y-3">
+            <li>
+              <Link href="/engineering-notebook" className="text-base">
+                Engineering Notebook
+              </Link>
+            </li>
+            <li>
+              <Link href="/experience" className="text-base">
+                Experience
+              </Link>
+            </li>
+            <li>
+              <Link href="/projects/nuvom" className="text-base">
+                Nuvom Project Study
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="text-lg font-semibold mb-4">Connect</h2>
+          <ul className="space-y-3">
+            <li>
+              <Link href="/contact" className="text-base">
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
   );
 }

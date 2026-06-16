@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import ModeToggle from "@/components/mode-toggle";
-import BackgroundGrid from "@/components/shared/BackgroundGrid";
 import Sidebar from "@/components/Sidebar";
 import MobileNav from "@/components/MobileNav";
 
@@ -31,7 +30,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-          <BackgroundGrid />
           <MobileNav />
           <div className="flex h-screen overflow-hidden md:pt-0 pt-20">
             <Sidebar />
