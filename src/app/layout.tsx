@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 import ModeToggle from "@/components/mode-toggle";
 import BackgroundGrid from "@/components/shared/BackgroundGrid";
 import Sidebar from "@/components/Sidebar";
+import MobileNav from "@/components/MobileNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,10 +32,11 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <BackgroundGrid />
-          <div className="flex h-screen overflow-hidden">
+          <MobileNav />
+          <div className="flex h-screen overflow-hidden md:pt-0 pt-20">
             <Sidebar />
             <div className="flex flex-col flex-1 md:ml-64">
-              <div className="absolute top-4 right-4 z-40 md:top-6 md:right-6">
+              <div className="absolute top-24 right-4 z-40 md:top-6 md:right-6">
                 <ModeToggle />
               </div>
               <main className="flex-1 overflow-y-auto">
