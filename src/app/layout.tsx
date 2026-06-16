@@ -3,8 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import ModeToggle from "@/components/mode-toggle";
-import BrandMark from "@/components/BrandMark";
 import BackgroundGrid from "@/components/shared/BackgroundGrid";
+import Sidebar from "@/components/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,19 +28,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <BackgroundGrid />
-          <BrandMark />
-          <div className="fixed top-3 right-4 z-50">
-            <ModeToggle />
+          <div className="flex h-screen overflow-hidden">
+            <Sidebar />
+            <div className="flex flex-col flex-1 md:ml-64">
+              <div className="absolute top-4 right-4 z-40 md:top-6 md:right-6">
+                <ModeToggle />
+              </div>
+              <main className="flex-1 overflow-y-auto">
+                {children}
+              </main>
+              <footer className="flex flex-col items-center gap-2 py-6 border-t border-border text-xs text-muted-foreground bg-background">
+                <span>&copy; {new Date().getFullYear()} Nahom. Built to scale.</span>
+              </footer>
+            </div>
           </div>
-          <main className="flex-1 pt-8">
-        {children}
-          </main>
-          <footer className="w-full flex flex-col items-center gap-2 py-6 border-t border-border text-xs text-muted-foreground">
-            <span>&copy; {new Date().getFullYear()} Nahom. Built to scale.</span>
-          </footer>
         </ThemeProvider>
       </body>
     </html>

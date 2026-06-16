@@ -19,7 +19,7 @@ export default function Sidebar() {
   };
 
   return (
-    <nav className="fixed left-0 top-0 h-screen w-64 border-r border-border bg-background px-6 py-8 overflow-y-auto">
+    <nav className="hidden md:flex md:fixed md:left-0 md:top-0 md:h-screen md:w-64 md:border-r md:border-border md:bg-background md:px-6 md:py-8 md:overflow-y-auto md:flex-col">
       <div className="mb-12">
         <h1 className="text-2xl font-bold text-foreground">Nahom Zewdu</h1>
         <p className="text-sm text-muted-foreground mt-1">Backend & Systems Engineer</p>
