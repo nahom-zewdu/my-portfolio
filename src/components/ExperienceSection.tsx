@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const experiences = [
   {
-    org: "BE Technology — Backend & Systems Engineer",
+    org: "BE Technology: Backend & Systems Engineer",
     tech: ["Python", "GCP", "n8n", "Automation Systems"],
     bullets: [
       "Built a lead generation automation system integrating Google Maps, business registries, and external APIs, delivering structured prospects into Notion with automated follow-ups.",
@@ -15,7 +15,7 @@ const experiences = [
     ]
   },
   {
-    org: "Eskalate — Backend Engineering Intern (Team Lead)",
+    org: "Eskalate: Backend Engineering Intern (Team Lead)",
     tech: ["Go", "MongoDB", "Docker", "JWT", "Clean Architecture"],
     bullets: [
       "Led a team of 3 engineers to design and deliver a backend system ahead of schedule.",
@@ -26,7 +26,7 @@ const experiences = [
     ]
   },
   {
-    org: "A2SV — Software Engineering Trainee",
+    org: "A2SV: Software Engineering Trainee",
     tech: ["Python", "Go", "Algorithms", "System Design"],
     bullets: [
       "Completed intensive training in data structures, algorithms, and system design.",
