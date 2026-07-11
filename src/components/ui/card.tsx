@@ -10,7 +10,7 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
         // Pure glass: fully transparent background with blur
         "text-card-foreground flex flex-col gap-6 rounded-2xl border py-6",
         "backdrop-blur-md bg-transparent border-white/15 dark:border-white/10",
-        "shadow-sm hover:shadow-md transition-colors",
+        "shadow-sm hover:shadow-md transition-shadow duration-200",
         className
       )}
       {...props}
