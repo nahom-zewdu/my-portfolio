@@ -40,6 +40,24 @@ Avoid:
 - Excessive motion
 - Bento grids
 
+## Experience
+
+Present experience as concise, outcome-oriented summaries rather than a timeline.
+
+Focus on:
+
+- responsibilities
+- systems built
+- technical impact
+
+Keep entries short and specific:
+
+- owned platform reliability and API surface for high-throughput systems
+- built observability tooling, deployment automation, and runtime resilience
+- translated product goals into service architecture, data pipelines, and operational guardrails
+
+Avoid role chronology and lengthy date-based narratives.
+
 ## Layout
 
 Persistent left navigation.
@@ -52,8 +70,38 @@ Typography is the primary visual identity.
 Large headings.
 Generous whitespace.
 
-## Accent Color
+## Color System
 
-Muted amber / brass / aged yellow.
+Use a restrained accent palette anchored in muted amber / aged brass.
 
-Used sparingly.
+Use color only for:
+
+- active navigation
+- section labels
+- links
+- notebook markers
+
+Avoid:
+
+- gradients
+- colorful backgrounds
+- large accent surfaces
+
+Maintain a calm engineering aesthetic with low-key contrast and purposeful color usage.
+
+## Motion
+
+Add subtle motion only where it improves usability.
+
+Focus on:
+
+- hover states
+- navigation transitions
+- section interactions
+
+Constraints:
+
+- maximum 200ms duration
+- no decorative animations
+- no parallax
+- no floating effects
