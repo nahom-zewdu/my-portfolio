@@ -4,35 +4,25 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const experiences = [
   {
-    org: "BE Technology: Backend & Systems Engineer",
-    tech: ["Python", "GCP", "n8n", "Automation Systems"],
-    bullets: [
-      "Built a lead generation automation system integrating Google Maps, business registries, and external APIs, delivering structured prospects into Notion with automated follow-ups.",
-      "Designed and deployed a fully automated news-to-video pipeline using n8n, ElevenLabs, JSON2Video, Cloudinary, and Google Drive, reducing content production time from hours to minutes.",
-      "Deployed and operated backend services on Google Cloud Platform (Compute Engine, Cloud Functions, GCS).",
-      "Implemented event-driven workflows and async processing pipelines for scalable automation.",
-      "Managed IAM roles, cloud resources, and billing to ensure cost-efficient and reliable system operation."
-    ]
+    title: "Backend & Systems Engineer",
+    company: "BE Technology",
+    responsibilities: "Designed and operated lead generation and content automation systems; managed GCP infrastructure, IAM, and cost optimization.",
+    systems: "Lead generation automation pipeline, news-to-video production system, event-driven async processing, cloud resource management.",
+    impact: "Reduced content production time from hours to minutes; delivered structured prospect workflows at scale."
   },
   {
-    org: "Eskalate: Backend Engineering Intern (Team Lead)",
-    tech: ["Go", "MongoDB", "Docker", "JWT", "Clean Architecture"],
-    bullets: [
-      "Led a team of 3 engineers to design and deliver a backend system ahead of schedule.",
-      "Built modular REST APIs in Go using Clean Architecture, improving maintainability and scalability.",
-      "Designed and implemented authentication systems using JWT and OAuth.",
-      "Reviewed and approved 15+ pull requests, enforcing architecture standards and code quality.",
-      "Containerized services with Docker and contributed to staging environment setup."
-    ]
+    title: "Backend Engineering Intern (Team Lead)",
+    company: "Eskalate",
+    responsibilities: "Led cross-functional team; designed and shipped modular REST APIs; enforced architecture standards and code quality.",
+    systems: "Go REST APIs using Clean Architecture, JWT/OAuth authentication, Docker containerization, MongoDB persistence.",
+    impact: "Delivered backend system ahead of schedule; reviewed 15+ PRs maintaining architectural consistency."
   },
   {
-    org: "A2SV: Software Engineering Trainee",
-    tech: ["Python", "Go", "Algorithms", "System Design"],
-    bullets: [
-      "Completed intensive training in data structures, algorithms, and system design.",
-      "Solved 700+ problems across competitive programming platforms.",
-      "Collaborated on backend-focused projects with emphasis on code quality and testing."
-    ]
+    title: "Software Engineering Trainee",
+    company: "A2SV",
+    responsibilities: "Completed intensive backend training; solved complex algorithm and system design problems.",
+    systems: "Competitive programming foundations, data structures, system design patterns, backend architecture.",
+    impact: "Mastered 700+ algorithm problems; demonstrated proficiency in system design and backend engineering."
   }
 ];
 
@@ -78,20 +68,29 @@ export default function ExperienceSection() {
       >
         {experiences.map((exp) => (
           <motion.li 
-            key={exp.org}
+            key={exp.company}
             variants={itemVariants}
           >
             <Card className="rounded-xl h-full border border-border bg-card/80 backdrop-blur-none shadow-sm hover:shadow-md transition-shadow">
               <CardContent className="p-6">
-                <div className="mb-4 space-y-1">
-                  <h3 className="text-lg font-semibold text-foreground">{exp.org}</h3>
-                  <p className="text-xs md:text-sm text-muted-foreground">
-                    {exp.tech.join(", ")}
-                  </p>
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold text-foreground">{exp.title}</h3>
+                  <p className="text-sm text-muted-foreground">{exp.company}</p>
                 </div>
-                <ul className="list-disc list-inside text-sm pl-2 space-y-2 text-muted-foreground">
-                  {exp.bullets.map((b, i) => <li key={i}>{b}</li>)}
-                </ul>
+                <div className="space-y-3 text-sm text-muted-foreground">
+                  <div>
+                    <p className="font-medium text-foreground mb-1">Responsibilities</p>
+                    <p>{exp.responsibilities}</p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground mb-1">Systems</p>
+                    <p>{exp.systems}</p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground mb-1">Impact</p>
+                    <p>{exp.impact}</p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </motion.li>
