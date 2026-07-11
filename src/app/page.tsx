@@ -12,15 +12,15 @@ const ExperienceSection = dynamic(() => import("@/components/ExperienceSection")
 const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: false });
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: "easeOut" }
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { duration: 0.2, ease: "easeOut" }
 };
 
 const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0.05
     }
   }
 };
@@ -45,7 +45,7 @@ export default function Home() {
           animate="animate"
         >
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold tracking-tight text-primary"
+            className="text-4xl md:text-6xl font-bold tracking-tight text-accent"
             variants={fadeInUp}
           >
             Nahom Zewdu | Backend &amp; Systems Engineer

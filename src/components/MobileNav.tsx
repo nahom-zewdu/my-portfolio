@@ -28,7 +28,7 @@ export default function MobileNav() {
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
-          className="p-2"
+          className="p-2 transition-colors duration-200"
         >
           {isOpen ? (
             <X className="w-6 h-6" />
@@ -46,10 +46,10 @@ export default function MobileNav() {
                 <Link
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block text-base transition-colors ${
+                  className={`block text-base transition-colors duration-200 ${
                     isActive(item.href)
-                      ? "text-foreground font-semibold"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "text-accent font-semibold"
+                      : "text-muted-foreground hover:text-accent"
                   }`}
                 >
                   {item.label}

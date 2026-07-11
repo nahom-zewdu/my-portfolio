@@ -7,21 +7,21 @@ export default function AboutSection() {
       {/* Top Row: centered */}
       <motion.div
         className="max-w-2xl mx-auto text-center"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-bold tracking-tight">Nahom Zewdu</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-accent">Nahom Zewdu</h2>
         <p className="text-lg text-muted-foreground mt-2">Backend &amp; Systems Engineer · Addis Ababa, Ethiopia</p>
       </motion.div>
 
       {/* Body: left-aligned narrative */}
       <motion.div
         className="max-w-3xl mx-auto mt-8"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.2, delay: 0.05 }}
         viewport={{ once: true }}
       >
         <div className="space-y-5 text-base leading-relaxed text-foreground/90">

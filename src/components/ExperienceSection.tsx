@@ -31,18 +31,17 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2
+      staggerChildren: 0.1
     }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
     transition: {
-      duration: 0.6
+      duration: 0.2
     }
   }
 };
@@ -51,10 +50,10 @@ export default function ExperienceSection() {
   return (
     <section id="experience" className="relative z-0 max-w-3xl mx-auto py-20 px-4">
       <motion.h2 
-        className="text-3xl font-bold mb-6 text-primary"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        className="text-3xl font-bold mb-6 text-accent"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
         viewport={{ once: true }}
       >
         Experience
@@ -71,7 +70,7 @@ export default function ExperienceSection() {
             key={exp.company}
             variants={itemVariants}
           >
-            <Card className="rounded-xl h-full border border-border bg-card/80 backdrop-blur-none shadow-sm hover:shadow-md transition-shadow">
+            <Card className="rounded-xl h-full border border-border bg-card/80 backdrop-blur-none shadow-sm hover:shadow-md transition-shadow duration-200">
               <CardContent className="p-6">
                 <div className="mb-4">
                   <h3 className="text-lg font-semibold text-foreground">{exp.title}</h3>
@@ -79,15 +78,15 @@ export default function ExperienceSection() {
                 </div>
                 <div className="space-y-3 text-sm text-muted-foreground">
                   <div>
-                    <p className="font-medium text-foreground mb-1">Responsibilities</p>
+                    <p className="font-medium text-accent mb-1">Responsibilities</p>
                     <p>{exp.responsibilities}</p>
                   </div>
                   <div>
-                    <p className="font-medium text-foreground mb-1">Systems</p>
+                    <p className="font-medium text-accent mb-1">Systems</p>
                     <p>{exp.systems}</p>
                   </div>
                   <div>
-                    <p className="font-medium text-foreground mb-1">Impact</p>
+                    <p className="font-medium text-accent mb-1">Impact</p>
                     <p>{exp.impact}</p>
                   </div>
                 </div>
