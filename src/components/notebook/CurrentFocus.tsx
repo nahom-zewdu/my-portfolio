@@ -27,7 +27,7 @@ export default function CurrentFocus({ title, status, children, areas }: Current
 
       {areas && areas.length > 0 && (
         <div>
-          <h4 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
+          <h4 className="text-sm font-semibold text-accent mb-3 uppercase tracking-wide">
             Focus Areas
           </h4>
           <ul className="space-y-2">
