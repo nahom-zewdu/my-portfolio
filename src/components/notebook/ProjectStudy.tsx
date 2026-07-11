@@ -25,7 +25,7 @@ export default function ProjectStudy({
 
       {stack && stack.length > 0 && (
         <div className="mb-8">
-          <h4 className="text-sm font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+          <h4 className="text-sm font-semibold text-accent mb-2 uppercase tracking-wide">
             Stack
           </h4>
           <p className="text-base leading-normal">{stack.join(", ")}</p>
@@ -33,7 +33,7 @@ export default function ProjectStudy({
       )}
 
       <div className="mb-8">
-        <h4 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
+        <h4 className="text-sm font-semibold text-accent mb-3 uppercase tracking-wide">
           Highlights
         </h4>
         <ul className="space-y-3">
@@ -56,7 +56,7 @@ export default function ProjectStudy({
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-base underline"
+              className="text-base text-accent underline transition-colors duration-200 hover:text-accent/80"
             >
               {link.label}
             </a>
