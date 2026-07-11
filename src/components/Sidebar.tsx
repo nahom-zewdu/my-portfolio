@@ -30,9 +30,9 @@ export default function Sidebar() {
           <li key={item.href}>
             <Link
               href={item.href}
-              className={`block text-base transition-colors duration-150 ${
+              className={`block text-base transition-colors ${
                 isActive(item.href)
-                  ? "text-[var(--accent-amber)] font-semibold"
+                  ? "text-foreground font-semibold"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
