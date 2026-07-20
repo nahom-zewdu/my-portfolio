@@ -3,7 +3,7 @@ import Link from "next/link";
 const links = [
   { href: "https://github.com/nahom-zewdu", label: "GitHub" },
   { href: "https://www.linkedin.com/in/nahom-zewdu/", label: "LinkedIn" },
-  { href: "https://drive.google.com/file/d/1qd71t0zFsOI34m5-TtbkAZIG67Ybzn6C/view?usp=sharing", label: "Resume" },
+  { href: "https://drive.google.com/file/d/1ypTQLxS3qpCXmY6LL1JGtCQqwxkKVnAI/view?usp=sharing", label: "Resume" },
   { href: "mailto:nahiyo86@gmail.com", label: "Email" },
 ];
 
