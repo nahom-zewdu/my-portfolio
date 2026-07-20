@@ -1,100 +1,49 @@
-"use client";
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-
 const experiences = [
   {
     title: "Backend & Systems Engineer",
     company: "BE Technology",
-    responsibilities: "Designed and operated lead generation and content automation systems; managed GCP infrastructure, IAM, and cost optimization.",
-    systems: "Lead generation automation pipeline, news-to-video production system, event-driven async processing, cloud resource management.",
-    impact: "Reduced content production time from hours to minutes; delivered structured prospect workflows at scale."
+    period: "2022–Present",
+    summary:
+      "Built and operated backend systems for automation and content workflows, with responsibility for infrastructure, reliability, and delivery across production services.",
   },
   {
     title: "Backend Engineering Intern (Team Lead)",
     company: "Eskalate",
-    responsibilities: "Led cross-functional team; designed and shipped modular REST APIs; enforced architecture standards and code quality.",
-    systems: "Go REST APIs using Clean Architecture, JWT/OAuth authentication, Docker containerization, MongoDB persistence.",
-    impact: "Delivered backend system ahead of schedule; reviewed 15+ PRs maintaining architectural consistency."
+    period: "2021",
+    summary:
+      "Led a small team in shaping modular backend services, enforcing architecture standards, and shipping reliable APIs ahead of schedule.",
   },
   {
     title: "Software Engineering Trainee",
     company: "A2SV",
-    responsibilities: "Completed intensive backend training; solved complex algorithm and system design problems.",
-    systems: "Competitive programming foundations, data structures, system design patterns, backend architecture.",
-    impact: "Mastered 700+ algorithm problems; demonstrated proficiency in system design and backend engineering."
-  }
+    period: "2020",
+    summary:
+      "Developed core systems fundamentals through intensive backend training, problem solving, and architectural practice.",
+  },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.2
-    }
-  }
-};
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="relative z-0 max-w-3xl mx-auto py-20 px-4">
-      <motion.h2 
-        className="text-3xl font-bold mb-6 text-accent"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.2 }}
-        viewport={{ once: true }}
-      >
-        Experience
-      </motion.h2>
-      <motion.ul 
-        className="space-y-8"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
+    <section id="experience" className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="space-y-2">
+        <p className="text-sm uppercase tracking-[0.24em] text-accent">Experience</p>
+        <h2 className="text-3xl font-semibold tracking-tight text-foreground">Selected work</h2>
+      </div>
+
+      <div className="mt-10 space-y-10">
         {experiences.map((exp) => (
-          <motion.li 
-            key={exp.company}
-            variants={itemVariants}
-          >
-            <Card className="rounded-xl h-full border border-border bg-card/80 backdrop-blur-none shadow-sm hover:shadow-md transition-shadow duration-200">
-              <CardContent className="p-6">
-                <div className="mb-4">
-                  <h3 className="text-lg font-semibold text-foreground">{exp.title}</h3>
-                  <p className="text-sm text-muted-foreground">{exp.company}</p>
-                </div>
-                <div className="space-y-3 text-sm text-muted-foreground">
-                  <div>
-                    <p className="font-medium text-accent mb-1">Responsibilities</p>
-                    <p>{exp.responsibilities}</p>
-                  </div>
-                  <div>
-                    <p className="font-medium text-accent mb-1">Systems</p>
-                    <p>{exp.systems}</p>
-                  </div>
-                  <div>
-                    <p className="font-medium text-accent mb-1">Impact</p>
-                    <p>{exp.impact}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.li>
+          <article key={exp.company + exp.period} className="border-b border-border pb-8 last:border-b-0 last:pb-0">
+            <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+              <div>
+                <h3 className="text-xl font-semibold text-foreground">{exp.title}</h3>
+                <p className="text-base text-muted-foreground">{exp.company}</p>
+              </div>
+              <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">{exp.period}</p>
+            </div>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/90">{exp.summary}</p>
+          </article>
         ))}
-      </motion.ul>
+      </div>
     </section>
   );
 } 
