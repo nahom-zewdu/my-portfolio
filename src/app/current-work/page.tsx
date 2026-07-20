@@ -1,78 +1,114 @@
-import { CurrentFocus } from "@/components/notebook";
+import { ProjectStudy } from "@/components/notebook";
+
+const projects = [
+  {
+    title: "Nuvom",
+    overview:
+      "A Python task execution engine designed for developers who need reliable background processing without the operational overhead of traditional distributed task queues.",
+    highlights: [
+      "Plugin-oriented architecture",
+      "Automatic task discovery",
+      "Retry and scheduling support",
+      "Multiple serialization strategies",
+      "Structured logging and observability",
+      "Production-oriented execution model",
+    ],
+    links: [{ label: "Visit site", href: "https://nuvom.netlify.app/" }],
+    children: (
+      <>
+        <p>
+          Existing solutions often assume external infrastructure or prioritize distributed deployments over simplicity.
+          Nuvom explores a lightweight architecture focused on portability, predictable execution, and developer experience.
+        </p>
+        <p>
+          Designed around modular components including pluggable queue backends, result backends, task discovery,
+          scheduling, retries, batching, observability, and configurable execution strategies. The architecture
+          emphasizes extensibility while keeping the developer experience straightforward.
+        </p>
+        <p>Status: Actively evolving as an open-source infrastructure project.</p>
+      </>
+    ),
+  },
+  {
+    title: "KMS",
+    overview:
+      "An AI-powered knowledge management system that transforms engineering conversations, repositories, and documentation into a searchable knowledge base for teams.",
+    highlights: [
+      "Multi-source knowledge ingestion",
+      "AI-powered semantic retrieval",
+      "Repository and documentation indexing",
+      "Modular ingestion pipeline",
+      "Extensible architecture for new data sources",
+    ],
+    links: [{ label: "View repository", href: "https://github.com/nahom-zewdu/KMS" }],
+    children: (
+      <>
+        <p>
+          Engineering knowledge is often fragmented across Slack, GitHub, documentation, and individual contributors.
+          KMS focuses on preserving institutional knowledge and making it accessible through semantic search and retrieval.
+        </p>
+        <p>
+          Built around an ingestion pipeline that processes multiple knowledge sources into a unified retrieval system.
+          The architecture combines document processing, embeddings, vector search, and LLM-powered retrieval while
+          remaining modular enough to support additional integrations.
+        </p>
+        <p>Status: Under active development.</p>
+      </>
+    ),
+  },
+  {
+    title: "Guessit",
+    overview:
+      "A real-time multiplayer drawing and guessing game focused on synchronization, low-latency communication, and multiplayer state management.",
+    highlights: [
+      "Real-time multiplayer architecture",
+      "WebSocket communication",
+      "Room management",
+      "Live synchronization",
+      "Event-driven game engine",
+    ],
+    links: [{ label: "Open app", href: "https://guessit-nu.vercel.app/" }],
+    children: (
+      <>
+        <p>
+          Building responsive multiplayer applications requires careful handling of synchronization, game state consistency,
+          and real-time communication between multiple participants.
+        </p>
+        <p>
+          Designed around WebSocket-based communication with centralized game state management, room coordination, player
+          synchronization, and event-driven interactions to provide a smooth multiplayer experience.
+        </p>
+        <p>Status: Functional deployment with ongoing improvements.</p>
+      </>
+    ),
+  },
+];
 
 export default function CurrentWorkPage() {
   return (
-    <section className="prose-content py-16 px-4">
-      <h1 className="mb-12">Current Focus</h1>
-
-      <CurrentFocus
-        title="Event-Driven Architecture & Async Systems"
-        status="active"
-        areas={[
-          "Message queue design patterns and operational tradeoffs",
-          "Event schema versioning and backward compatibility",
-          "Distributed tracing and observability for async workloads",
-          "Consumer lag monitoring and failure recovery",
-        ]}
-      >
-        <p>
-          Building systems that respond to events rather than requests requires rethinking common patterns.
-          The challenge is managing ordering guarantees, deduplication, and late arrivals while keeping the
-          system simple to reason about. Currently exploring how to model event-driven workflows in Go and Python,
-          with emphasis on testability and operational clarity.
+    <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mb-12 space-y-2">
+        <p className="text-sm uppercase tracking-[0.24em] text-accent">Selected Projects</p>
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground">A selection of systems built around technical problems.</h1>
+        <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
+          A selection of systems I&apos;ve built to explore backend infrastructure, developer tooling, and knowledge systems.
+          Each project represents solving a technical problem rather than showcasing a technology stack.
         </p>
-      </CurrentFocus>
+      </div>
 
-      <CurrentFocus
-        title="Developer Tooling & Automation Pipelines"
-        status="active"
-        areas={[
-          "Building CLIs that reduce boilerplate and automate repetitive tasks",
-          "Designing automation pipelines that integrate external services",
-          "Task scheduling systems for complex workflows",
-          "Observability and monitoring for automated processes",
-        ]}
-      >
-        <p>
-          Building tools that make developers more productive. This includes designing clean APIs, reducing
-          cognitive load, and making common patterns explicit. Interested in automation frameworks that handle
-          edge cases gracefully and provide good failure visibility.
-        </p>
-      </CurrentFocus>
-
-      <CurrentFocus
-        title="Distributed Systems at Scale"
-        status="exploring"
-        areas={[
-          "Consistency models and tradeoffs (strong vs eventual)",
-          "Consensus algorithms and their practical implications",
-          "Database design for distributed workloads",
-          "Cost-aware infrastructure and resource optimization",
-        ]}
-      >
-        <p>
-          Understanding how systems behave under real-world constraints: network partitions, partial failures,
-          and operational complexity. Studying how companies scale systems from thousands to millions of requests
-          per second, and what decisions enable that growth.
-        </p>
-      </CurrentFocus>
-
-      <CurrentFocus
-        title="Production Systems & Observability"
-        status="active"
-        areas={[
-          "Structured logging and log aggregation patterns",
-          "Metrics collection and alerting strategies",
-          "Incident response and postmortem culture",
-          "Making operational tradeoffs explicit in code",
-        ]}
-      >
-        <p>
-          The gap between what code does in tests and what it does in production is where most problems live.
-          Focusing on systems that are easy to operate, debug, and improve. This means designing for observability
-          from the start, not bolting it on later.
-        </p>
-      </CurrentFocus>
+      <div>
+        {projects.map((project) => (
+          <ProjectStudy
+            key={project.title}
+            title={project.title}
+            overview={project.overview}
+            highlights={project.highlights}
+            links={project.links}
+          >
+            {project.children}
+          </ProjectStudy>
+        ))}
+      </div>
     </section>
   );
 }
