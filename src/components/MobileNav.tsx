@@ -23,30 +23,30 @@ export default function MobileNav() {
 
   return (
     <div className="md:hidden fixed top-0 left-0 right-0 z-30 border-b border-border bg-background">
-      <div className="flex items-center justify-between px-4 py-4">
-        <h1 className="text-lg font-bold">Nahom Zewdu</h1>
+      <div className="flex items-center justify-between px-3 py-3">
+        <h1 className="text-base font-semibold">Nahom Zewdu</h1>
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
-          className="p-2 transition-colors duration-200"
+          className="rounded p-1.5 transition-colors duration-200"
         >
           {isOpen ? (
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           ) : (
-            <Menu className="w-6 h-6" />
+            <Menu className="w-5 h-5" />
           )}
         </button>
       </div>
 
       {isOpen && (
-        <nav className="border-t border-border bg-background px-4 py-4 space-y-3">
-          <ul className="space-y-3">
+        <nav className="border-t border-border bg-background px-3 py-3">
+          <ul className="space-y-2">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block text-base transition-colors duration-200 ${
+                  className={`block text-sm transition-colors duration-200 ${
                     isActive(item.href)
                       ? "text-accent font-semibold"
                       : "text-muted-foreground hover:text-accent"
