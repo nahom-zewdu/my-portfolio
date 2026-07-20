@@ -25,7 +25,7 @@ export default function MobileNav() {
   return (
     <div className="md:hidden fixed top-0 left-0 right-0 z-30 border-b border-border bg-background">
       <div className="flex items-center justify-between px-3 py-3">
-        <h1 className="text-base font-semibold"><a href="/" className="hover:underline">
+        <h1 className="text-base font-semibold"><a href="/" className="hover:underline" style={{ textDecoration: "none" }}>
           Nahom Zewdu
         </a></h1>
         <div className="flex items-center gap-2">
