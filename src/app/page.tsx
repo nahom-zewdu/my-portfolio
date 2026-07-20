@@ -1,96 +1,47 @@
-"use client";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import { useRef } from "react";
-import { motion } from "framer-motion";
-import TechStack from "@/components/TechStack";
 
-const SystemsSection = dynamic(() => import("@/components/SystemsSection"), { ssr: false });
-const AboutSection = dynamic(() => import("@/components/AboutSection"), { ssr: false });
-const ExperienceSection = dynamic(() => import("@/components/ExperienceSection"), { ssr: false });
-const ContactSection = dynamic(() => import("@/components/ContactSection"), { ssr: false });
-
-const fadeInUp = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  transition: { duration: 0.2, ease: "easeOut" }
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.05
-    }
-  }
-};
+const links = [
+  { href: "https://github.com/nahom-zewdu", label: "GitHub" },
+  { href: "https://www.linkedin.com/in/nahom-zewdu/", label: "LinkedIn" },
+  { href: "https://drive.google.com/file/d/1qd71t0zFsOI34m5-TtbkAZIG67Ybzn6C/view?usp=sharing", label: "Resume" },
+  { href: "mailto:nahiyo86@gmail.com", label: "Email" },
+];
 
 export default function Home() {
-  const heroRef = useRef<HTMLDivElement>(null);
-
   return (
-    <>
-      <motion.section
-        id="hero"
-        ref={heroRef}
-        className="relative flex flex-col items-center justify-center min-h-[70vh] gap-8 text-center px-4 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <motion.div 
-          className="space-y-6 max-w-3xl mx-auto"
-          variants={fadeInUp}
-          initial="initial"
-          animate="animate"
-        >
-          <motion.h1 
-            className="text-4xl md:text-6xl font-bold tracking-tight text-accent"
-            variants={fadeInUp}
-          >
-            Nahom Zewdu | Backend &amp; Systems Engineer
-          </motion.h1>
-          <motion.p 
-            className="mx-auto text-xl md:text-2xl text-foreground/80"
-            variants={fadeInUp}
-          >
-            Building real-time systems, automation pipelines, and cloud-based infrastructure with Python &amp; Go
-          </motion.p>
-        </motion.div>
-        <motion.div 
-          className="flex flex-col sm:flex-row gap-4 justify-center mt-6"
-          variants={staggerContainer}
-          initial="initial"
-          animate="animate"
-        >
-          <motion.div variants={fadeInUp}>
-            <Button asChild size="lg">
-              <Link href="#projects">View Projects</Link>
-            </Button>
-          </motion.div>
-          <motion.div variants={fadeInUp}>
-            <Button asChild variant="outline" size="lg">
-              <a
-                href="https://drive.google.com/file/d/1qd71t0zFsOI34m5-TtbkAZIG67Ybzn6C/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Download CV
-              </a>
-            </Button>
-          </motion.div>
-          <motion.div variants={fadeInUp}>
-            <Button asChild variant="ghost" size="lg">
-              <a href="https://github.com/nahom-zewdu" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </Button>
-          </motion.div>
-        </motion.div>
-      </motion.section>
-      <TechStack />
-      <SystemsSection />
-      <AboutSection />
-      <ExperienceSection />
-      <ContactSection />
-    </>
+    <main className="mx-auto flex min-h-[70vh] max-w-3xl flex-col justify-center px-4 py-16 sm:px-6 lg:px-8">
+      <section className="space-y-8">
+        <div className="space-y-4">
+          <p className="text-sm uppercase tracking-[0.24em] text-accent">Introduction</p>
+          <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+            Nahom Zewdu
+          </h1>
+          <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            I build reliable backend systems, automation pipelines, and infrastructure for demanding product work.
+          </p>
+        </div>
+
+        <div className="space-y-2">
+          <p className="text-sm uppercase tracking-[0.24em] text-accent">Current focus</p>
+          <p className="max-w-2xl text-base leading-relaxed text-foreground/90">
+            Building durable systems with clear boundaries, dependable operations, and thoughtful architecture.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap gap-4 pt-2">
+          {links.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-accent underline-offset-4 transition-opacity duration-200 hover:opacity-80"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
