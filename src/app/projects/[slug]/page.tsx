@@ -1,40 +1,20 @@
-import { notFound } from "next/navigation";
-import { projects, toSlug } from "@/data/projects";
+import { notFound, redirect } from "next/navigation";
+import ProjectCaseStudy from "@/components/ProjectCaseStudy";
+import { legacyProjectSlugs, projects } from "@/data/projects";
 
 export function generateStaticParams() {
-  return projects.map(p => ({ slug: toSlug(p.title) }));
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
 export default async function ProjectCaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const project = projects.find(p => toSlug(p.title) === slug);
+  const project = projects.find((item) => item.slug === slug);
+  if (!project && legacyProjectSlugs[slug]) {
+    const destination = legacyProjectSlugs[slug];
+    redirect(destination.startsWith("/") ? destination : `/projects/${destination}`);
+  }
   if (!project) return notFound();
 
-  return (
-    <article className="max-w-3xl mx-auto py-16 px-4 prose dark:prose-invert">
-      <h1>{project.title}</h1>
-      <p className="lead">{project.overview}</p>
-      <figure className="my-6">
-        <div className="aspect-video w-full rounded-xl border bg-muted/40" />
-        <figcaption className="text-sm text-muted-foreground mt-2">Architecture diagram</figcaption>
-      </figure>
-      <h2>Highlights</h2>
-      <ul>
-        {project.decisions.map((d, i) => (
-          <li key={i}>{d}</li>
-        ))}
-      </ul>
-      {project.links && project.links.length > 0 && (
-        <p>
-          {project.links.map(l => (
-            <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" className="mr-4 underline">
-              {l.label}
-            </a>
-          ))}
-        </p>
-      )}
-    </article>
-  );
+  return <ProjectCaseStudy project={project} />;
 }
-
 
