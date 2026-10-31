@@ -18,8 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nahom Zewdu",
-  description: "Hey, I'm Nahom. I'm a software engineer",
+  title: "Nahom Zewdu — Software Engineer",
+  description:
+    "Software Engineer focused on systems, automation, developer tools, AI integration, cloud infrastructure, and full-stack products.",
 };
 
 export default function RootLayout({
@@ -43,7 +44,7 @@ export default function RootLayout({
                 {children}
               </main>
               <footer className="flex flex-col items-center gap-2 py-6 border-t border-border text-xs text-muted-foreground bg-background">
-                <span>&copy; {new Date().getFullYear()} Nahom. Built to scale.</span>
+                <span>&copy; {new Date().getFullYear()} Nahom Zewdu</span>
               </footer>
             </div>
           </div>
