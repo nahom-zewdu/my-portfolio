@@ -3,6 +3,7 @@ import Link from "next/link";
 
 interface ProjectStudyProps {
   title: string;
+  status?: string;
   overview: string;
   highlights: string[];
   stack?: string[];
@@ -13,6 +14,7 @@ interface ProjectStudyProps {
 
 export default function ProjectStudy({
   title,
+  status,
   overview,
   highlights,
   stack,
@@ -22,6 +24,9 @@ export default function ProjectStudy({
 }: ProjectStudyProps) {
   return (
     <article className="mb-12 pb-12 border-b border-border last:border-b-0 last:mb-0 last:pb-0">
+      {status && (
+        <p className="mb-3 text-xs uppercase tracking-[0.2em] text-accent">{status}</p>
+      )}
       <h2 className="text-3xl font-bold leading-tight mb-4">{title}</h2>
 
       <p className="text-lg text-foreground/80 mb-8 leading-normal">{overview}</p>
