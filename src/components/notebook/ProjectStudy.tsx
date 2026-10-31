@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import Link from "next/link";
 
 interface ProjectStudyProps {
   title: string;
@@ -7,6 +8,7 @@ interface ProjectStudyProps {
   stack?: string[];
   children?: ReactNode;
   links?: Array<{ label: string; href: string }>;
+  caseStudyHref?: string;
 }
 
 export default function ProjectStudy({
@@ -16,6 +18,7 @@ export default function ProjectStudy({
   stack,
   children,
   links,
+  caseStudyHref,
 }: ProjectStudyProps) {
   return (
     <article className="mb-12 pb-12 border-b border-border last:border-b-0 last:mb-0 last:pb-0">
@@ -62,6 +65,17 @@ export default function ProjectStudy({
             </a>
           ))}
         </div>
+      )}
+
+      {caseStudyHref && (
+        <p className="mt-4">
+          <Link
+            href={caseStudyHref}
+            className="text-base text-accent underline transition-colors duration-200 hover:text-accent/80"
+          >
+            Read case study
+          </Link>
+        </p>
       )}
     </article>
   );
