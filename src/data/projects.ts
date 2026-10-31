@@ -79,7 +79,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    links: [],
+    links: [{ label: "GitHub repository", url: "https://github.com/nahom-zewdu/blender-automation" }],
   },
   {
     slug: "guessit",
