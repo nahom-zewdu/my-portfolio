@@ -18,9 +18,9 @@ const experiences = [
     company: "Eskalate",
     role: "Backend Engineering Intern",
     summary:
-      "Contributed to backend development for a knowledge management platform, including API, authentication, data-management, and AI-assisted knowledge-retrieval work as part of an engineering team.",
+      "Contributed to backend engineering for a knowledge management platform, working across backend application development, API functionality, authentication, data management, and AI-assisted knowledge retrieval. The internship involved implementing and improving backend capabilities as part of an engineering team.",
     contributions: [
-      "Worked across backend features and the platform's knowledge retrieval capabilities.",
+      "Contributed to backend features supporting the platform's APIs, authentication, data management, and knowledge retrieval workflows.",
     ],
   },
   {
