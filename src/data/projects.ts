@@ -16,7 +16,7 @@ export const projects: Project[] = [
     slug: "kms",
     title: "KMS / Ramp",
     overview:
-      "Ramp is an evidence-grounded developer onboarding tool for understanding unfamiliar codebases. Its product model moved away from directory proximity and path heuristics toward workflows supported by indexed code and implementation relationships.",
+      "Ramp is a developer onboarding tool designed to help engineers understand unfamiliar codebases. It builds bounded, evidence-backed views of how implementation surfaces relate, then uses those candidates to generate structured onboarding plans. The system is designed to distinguish observed code relationships from assumptions that still require human verification.",
     status: "In development",
     stack: ["Python", "Go", "Supabase", "LLM integration"],
     highlights: [
@@ -27,17 +27,17 @@ export const projects: Project[] = [
     ],
     details: [
       {
-        heading: "From paths to evidence",
+        heading: "Evidence-grounded code understanding",
         paragraphs: [
-          "Directory proximity and path naming did not reliably describe meaningful engineering workflows. Ramp instead starts from indexed implementation surfaces and available graph relationships, then composes evidence into bounded workflow candidates.",
-          "The evidence model distinguishes direct, derived, and inferred relationships. It does not treat every connection as confirmed behavior; engineers are asked to verify control and data flow in source and mark unknowns.",
+          "An early approach to codebase understanding relied too heavily on directory proximity and path naming. Those signals were insufficient to establish that files participated in the same engineering workflow. Ramp moved toward using indexed implementation surfaces and available code relationships to construct bounded workflow candidates.",
+          "The evidence model separates direct relationships from derived and inferred ones. A relationship is not automatically treated as proof of runtime behavior. The system preserves uncertainty so that engineers can inspect the underlying source, verify control and data flow, and identify gaps rather than receiving an apparently complete but unsupported explanation.",
         ],
       },
       {
-        heading: "Plan generation",
+        heading: "Deterministic onboarding plans",
         paragraphs: [
-          "Workflow candidates are scored and sequenced deterministically, with eligibility, risk, prerequisites, and verification signals kept separate from LLM output. Plans and progress are persisted for later use.",
-          "This is an evolving product direction, not a claim of measured onboarding improvements or production validation.",
+          "Workflow candidates are evaluated and sequenced through deterministic logic. Eligibility, risk, prerequisites, and verification signals are kept distinct from language-model output. This separation is intended to make plan generation more inspectable and reduce the risk of an LLM presenting unsupported relationships as established facts.",
+          "Generated onboarding plans and their progress are persisted so that the work can be revisited. The current implementation represents an evolving product direction; it has not established measured improvements in onboarding time, developer productivity, or production-scale reliability.",
         ],
       },
     ],
