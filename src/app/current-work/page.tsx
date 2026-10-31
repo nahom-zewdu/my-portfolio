@@ -17,6 +17,7 @@ export default function CurrentWorkPage() {
           <ProjectStudy
             key={project.slug}
             title={project.title}
+            status={project.status}
             overview={project.overview}
             highlights={project.highlights}
             stack={project.stack}
