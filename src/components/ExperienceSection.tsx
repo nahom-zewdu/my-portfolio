@@ -1,41 +1,35 @@
+import Link from "next/link";
+
 const experiences = [
   {
     company: "BE Technology",
     role: "Software Engineer",
     summary:
-      "Design and develop backend systems, internal engineering tools, workflow automation, and AI-assisted solutions. The work emphasizes maintainable architecture, scalable implementation, and practical software engineering for production environments.",
+      "Designed, developed, maintained, and optimized software systems. The work included automation workflows and internal tools, including n8n; AI/LLM integrations; maintainable implementation; and reliability and documentation.",
     contributions: [
-      "Built backend services for internal platforms.",
-      "Developed automation workflows to reduce repetitive engineering tasks.",
-      "Integrated AI capabilities into software solutions where appropriate.",
-      "Improved maintainability through clean architecture and documentation.",
-      "Collaborated on production software delivery.",
+      "Built workflows connecting asset requirements, retrieval, transfer, and Blender rendering.",
+      "Investigated procedural character animation separately from the implemented rendering workflow.",
     ],
+    projectHref: "/projects/blender-automation",
+    projectLabel: "Blender automation case study",
   },
   {
     company: "Eskalate",
     role: "Backend Engineering Intern",
     summary:
-      "Worked on backend development for a knowledge management platform, contributing to API development, authentication, data management, and AI-powered knowledge retrieval features while collaborating within an engineering team.",
+      "Contributed to backend development for a knowledge management platform, including API, authentication, data-management, and AI-assisted knowledge-retrieval work as part of an engineering team.",
     contributions: [
-      "Contributed to backend feature development.",
-      "Worked with authentication and authorization systems.",
-      "Participated in designing scalable backend architecture.",
-      "Integrated AI-assisted knowledge management functionality.",
-      "Collaborated using modern engineering workflows.",
+      "Worked across backend features and the platform's knowledge retrieval capabilities.",
     ],
   },
   {
     company: "A2SV",
-    role: "Software Engineering Trainee",
+    role: "Software Engineering Trainee · Engineering training",
     summary:
-      "Strengthened algorithmic problem solving, software engineering fundamentals, and collaborative development through intensive technical training and team-based projects.",
+      "Engineering training focused on problem solving, software engineering fundamentals, and collaborative development.",
     contributions: [
-      "Practiced advanced data structures and algorithms.",
-      "Solved challenging programming problems consistently.",
-      "Built collaborative software projects.",
-      "Strengthened software design fundamentals.",
-      "Improved code quality and review practices.",
+      "Developed algorithmic problem-solving and software design skills.",
+      "Practiced collaborative project work and code review.",
     ],
   },
 ];
@@ -45,9 +39,9 @@ export default function ExperienceSection() {
     <section id="experience" className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="space-y-2">
         <p className="text-sm uppercase tracking-[0.24em] text-accent">Professional Experience</p>
-        <h2 className="text-3xl font-semibold tracking-tight text-foreground">A record of building backend systems and engineering tools.</h2>
+        <h2 className="text-3xl font-semibold tracking-tight text-foreground">Systems, automation, and product engineering.</h2>
         <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
-          My professional work has centered around building backend systems, internal platforms, and automation tooling while continuously exploring distributed systems, developer infrastructure, and applied AI.
+          Experience across software systems, workflow automation, AI integrations, and engineering training.
         </p>
       </div>
 
@@ -67,6 +61,16 @@ export default function ExperienceSection() {
                 </li>
               ))}
             </ul>
+            {exp.projectHref && (
+              <p className="mt-4">
+                <Link
+                  href={exp.projectHref}
+                  className="text-sm text-accent underline underline-offset-4"
+                >
+                  {exp.projectLabel}
+                </Link>
+              </p>
+            )}
           </article>
         ))}
       </div>
