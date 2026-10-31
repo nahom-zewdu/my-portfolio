@@ -1,10 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function AboutSection() {
   return (
     <section id="about" className="relative z-0 py-16 px-4">
-      {/* Top Row: centered */}
       <motion.div
         className="max-w-2xl mx-auto text-center"
         initial={{ opacity: 0 }}
@@ -13,10 +13,12 @@ export default function AboutSection() {
         viewport={{ once: true }}
       >
         <h2 className="text-3xl font-bold tracking-tight text-accent">Nahom Zewdu</h2>
-        <p className="text-lg text-muted-foreground mt-2">Backend &amp; Systems Engineer · Addis Ababa, Ethiopia</p>
+        <p className="text-lg text-muted-foreground mt-2">
+          Software Engineer — Systems, Automation &amp; Developer Tools
+        </p>
+        <p className="text-sm text-muted-foreground mt-2">Addis Ababa, Ethiopia</p>
       </motion.div>
 
-      {/* Body: left-aligned narrative */}
       <motion.div
         className="max-w-3xl mx-auto mt-8"
         initial={{ opacity: 0 }}
@@ -26,16 +28,22 @@ export default function AboutSection() {
       >
         <div className="space-y-5 text-base leading-relaxed text-foreground/90">
           <p>
-            I build real-time systems, automation pipelines, and developer tools using Python and Go, with a focus on scalability, reliability, and clean architecture.
+            I work on software systems and backend architecture, automation infrastructure and workflows, AI/LLM integrations, cloud infrastructure, developer tools, and full-stack products.
           </p>
           <p>
-            My work spans backend services, distributed processing, and cloud infrastructure designing systems that handle asynchronous workloads, integrate external services, and operate predictably in production environments. I&apos;ve built everything from task queue systems and real-time applications to automation-heavy pipelines that reduce manual workflows and improve operational efficiency.
-          </p>
-          <p>
-            I&apos;ve worked on systems deployed on Google Cloud Platform, including Compute Engine, Cloud Functions, and GCS, and have experience managing infrastructure, permissions, and cost-aware system design.
-          </p>
-          <p>
-            I&apos;m particularly interested in event-driven systems, developer tooling, and AI-integrated workflows, and I approach engineering with a focus on clarity, practical design decisions, and long-term maintainability.
+            Explore{" "}
+            <Link href="/current-work" className="text-accent underline underline-offset-4">
+              selected work
+            </Link>
+            , my{" "}
+            <Link href="/experience" className="text-accent underline underline-offset-4">
+              experience
+            </Link>
+            , and the{" "}
+            <Link href="/engineering-notebook" className="text-accent underline underline-offset-4">
+              engineering notebook
+            </Link>
+            , where I&apos;m preparing notes on the decisions and unresolved questions behind the work.
           </p>
         </div>
       </motion.div>
