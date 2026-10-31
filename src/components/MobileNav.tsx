@@ -7,7 +7,7 @@ import ModeToggle from "@/components/mode-toggle";
 
 const navItems = [
   { href: "/introduction", label: "Introduction" },
-  { href: "/current-work", label: "Current Work" },
+  { href: "/current-work", label: "Selected Work" },
   { href: "/engineering-notebook", label: "Engineering Notebook" },
   { href: "/experience", label: "Experience" },
   { href: "/contact", label: "Contact" },
