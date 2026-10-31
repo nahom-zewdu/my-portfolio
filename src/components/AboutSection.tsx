@@ -12,7 +12,7 @@ export default function AboutSection() {
         transition={{ duration: 0.2 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-bold tracking-tight text-accent">Nahom Zewdu</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-accent">Engineering Profile</h2>
         <p className="text-lg text-muted-foreground mt-2">
           Software Engineer — Systems, Automation &amp; Developer Tools
         </p>
@@ -28,7 +28,10 @@ export default function AboutSection() {
       >
         <div className="space-y-5 text-base leading-relaxed text-foreground/90">
           <p>
-            I work on software systems and backend architecture, automation infrastructure and workflows, AI/LLM integrations, cloud infrastructure, developer tools, and full-stack products.
+            I build software across backend systems, automation workflows, cloud infrastructure, AI/LLM integration, and full-stack products. My projects range from a Python task execution framework and a real-time multiplayer application to cloud-based 3D rendering automation and tools for understanding unfamiliar codebases.
+          </p>
+          <p>
+            I’m interested in the engineering decisions beneath those products: how components communicate, how asynchronous work is executed and observed, how integrations fail, and how developers can understand systems they did not build. I aim to make those decisions explicit and validate them against working implementations.
           </p>
           <p>
             Explore{" "}
@@ -43,7 +46,7 @@ export default function AboutSection() {
             <Link href="/engineering-notebook" className="text-accent underline underline-offset-4">
               engineering notebook
             </Link>
-            , where I&apos;m preparing notes on the decisions and unresolved questions behind the work.
+            , where I document the decisions, trade-offs, and unresolved questions behind the work.
           </p>
         </div>
       </motion.div>
