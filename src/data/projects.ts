@@ -47,7 +47,7 @@ export const projects: Project[] = [
     slug: "blender-automation",
     title: "Blender Automation",
     overview:
-      "An n8n-orchestrated workflow that extracts 3D asset requirements, retrieves assets, and renders scenes through a Flask service running Blender headlessly. A separate procedural animation investigation remained incomplete.",
+      "An automated 3D asset-to-render workflow that connects asset discovery, AI-assisted requirement extraction, cloud file transfer, and headless Blender rendering. The implementation combines n8n, an LLM integration, Sketchfab assets, Google Drive, a Flask service, and Google Cloud infrastructure. Alongside the working rendering pipeline, the project explored the limitations of generating complex procedural animations through LLM-produced Blender scripts.",
     status: "Professional experience case study",
     stack: [
       "n8n",
@@ -66,16 +66,17 @@ export const projects: Project[] = [
     ],
     details: [
       {
-        heading: "Implemented rendering workflow",
+        heading: "An integrated asset-to-render pipeline",
         paragraphs: [
-          "n8n orchestrated requirement extraction with an LLM, Sketchfab asset retrieval, Google Drive transfer, and a Flask rendering service on a Google Cloud VM. The service launched Blender with xvfb-run and used Blender Python to import GLB/GLTF assets, construct scenes, configure cameras and lighting, and render PNG or MP4 outputs to Google Cloud Storage.",
-          "This describes the implemented asset-to-render workflow; it does not imply production-grade infrastructure or a fully autonomous animation system.",
+          "The workflow uses n8n to coordinate the process and an LLM to extract scene requirements for up to two assets. Sketchfab provides the 3D assets, while Google Drive handles file transfer between workflow stages. A Flask service deployed on a Google Cloud VM receives rendering jobs, downloads the required files, and invokes Blender in background mode through xvfb-run. Rendered outputs are then stored in Google Cloud Storage.",
+          "The Blender-side implementation includes GLTF/GLB asset importing, scene setup, bounding-box-based normalization, camera and lighting configuration, and image or video rendering. The rendering code also includes GPU detection with a CPU fallback. This project brought together workflow orchestration, API development, file handling, 3D tooling, and cloud infrastructure in one automated process.",
         ],
       },
       {
-        heading: "Procedural animation investigation",
+        heading: "Investigating procedural animation",
         paragraphs: [
-          "A basketball scenario was used to investigate procedural character animation. The work did not resolve character-rig discovery, scale, ground alignment, orientation, physics, or character-object interaction. It remains an investigation rather than a finished animation capability.",
+          "Extending the pipeline from static rendering to animation exposed a different class of problems. LLM-generated Blender scripts made incorrect assumptions about scene objects, armatures, animation context, and keyframe operations. Generating syntactically valid Python was not enough to guarantee a valid or convincing animation.",
+          "The investigation moved toward template-based animation and controlled changes to object transforms and timing rather than relying entirely on unconstrained generated scripts. Some experiments required manual corrections and viewport playback validation. The work demonstrated the gap between generating a scene or animation script and producing a coherent animation with meaningful object interaction. Complex procedural animation was not fully solved.",
         ],
       },
     ],
@@ -85,7 +86,7 @@ export const projects: Project[] = [
     slug: "guessit",
     title: "Guessit",
     overview:
-      "A real-time multiplayer drawing-and-guessing game with a Go WebSocket backend and a React/TypeScript frontend. The game has been played in sessions with school friends and developer communities, with feedback and feature suggestions gathered from participants.",
+      "A real-time multiplayer drawing and guessing game built with a React and TypeScript frontend and a Go WebSocket backend. The project combines room-based game coordination, live drawing and chat events, and an operational metrics dashboard. It provided a practical environment for exploring event-driven communication, concurrent server state, WebSocket handling, and observability in a real-time application.",
     status: "Released project",
     stack: ["Go", "WebSockets", "React", "TypeScript", "Zustand", "Redis"],
     highlights: [
@@ -96,17 +97,17 @@ export const projects: Project[] = [
     ],
     details: [
       {
-        heading: "Architecture",
+        heading: "Real-time multiplayer architecture",
         paragraphs: [
-          "The Go backend manages rooms, players, game events, and WebSocket communication. The React and TypeScript frontend uses Zustand for client-side game state.",
-          "Room and game state live in memory. Redis is used to persist operational metrics, not game sessions; persistent player sessions and reconnect restoration are not implemented.",
+          "The backend uses Go and WebSockets to coordinate game rooms, players, drawing events, and chat messages. The frontend is built with React and TypeScript and communicates with the backend over persistent WebSocket connections. Game and room state is maintained in memory, allowing the server to coordinate active sessions without introducing a separate persistent game-state database.",
+          "The implementation required handling concurrent connections and shared room state, coordinating messages between participants, and keeping the frontend synchronized with server-side game events. The project was exercised through games with friends and developer communities, providing practical feedback across multiple rounds of play.",
         ],
       },
       {
-        heading: "Use and measurement",
+        heading: "Operational visibility and metrics",
         paragraphs: [
-          "The game has been used for multiple rounds with school friends and developer communities. Participants shared feedback and suggestions for further features.",
-          "Vercel recorded 1,792 requests between May and October 2026. This is a request count, not a count of unique visitors or players.",
+          "The project includes an operational metrics system for observing active and peak connections, rooms, message counts, transferred bytes, drawing and chat activity, and latency. The backend uses atomic operations and mutex-protected state for concurrent metric collection. A bounded rolling latency buffer stores up to 5,000 measurements for percentile calculations, while the frontend also measures round-trip time through client-side ping messages.",
+          "Redis is used for metrics persistence rather than as the primary game-state store. Metrics are persisted at startup and periodically, with the dashboard refreshing on a short polling interval. This separation made it possible to observe application activity without making Redis responsible for coordinating the game itself.",
         ],
       },
     ],
@@ -126,7 +127,7 @@ export const projects: Project[] = [
     slug: "nuvom",
     title: "Nuvom",
     overview:
-      "An open-source Python task execution framework with a decorator-based API, configurable scheduling, and pluggable queue and result backends.",
+      "An open-source Python task execution framework designed around a lightweight, local-first approach to background work. Nuvom provides a task API, queue and result backends, worker execution, retries, scheduling, plugin hooks, and a CLI. Its development explored how to provide useful task-processing capabilities without requiring a Redis-backed infrastructure for the default local workflow.",
     status: "Paused; latest known package version 0.11.2",
     stack: ["Python", "SQLite"],
     highlights: [
@@ -140,17 +141,17 @@ export const projects: Project[] = [
     ],
     details: [
       {
-        heading: "Execution model",
+        heading: "Local-first task execution",
         paragraphs: [
-          "Tasks are declared with @task and can be dispatched with .delay() or scheduled with .schedule(). The CLI discovers decorated functions through AST inspection and caches a manifest.",
-          "The framework includes SQLite queue and result backends, configurable retries and timeouts, plugin support, and one-off, interval, and cron scheduling. The repository includes an automated PyPI release workflow.",
+          "Nuvom exposes a decorator-based task interface, allowing functions to be registered as tasks and submitted for execution through its API. The framework includes task discovery through AST-based scanning and a manifest cache, a worker execution engine, and SQLite-backed queue and result storage. Its backend design supports pluggable storage implementations rather than tying the framework to a single persistence mechanism.",
+          "The framework developed beyond basic task submission to include retry handling, timeout configuration, task metadata, execution hooks, plugin support, and a command-line interface with configuration support. It also includes one-off, interval, and cron-style scheduling. The goal was to make background task execution accessible in local development environments without requiring a separate Redis service as a default dependency.",
         ],
       },
       {
-        heading: "Project status",
+        heading: "Execution semantics and design trade-offs",
         paragraphs: [
-          "Nuvom is a released open-source project that has been paused for over a year. Its latest known package version is 0.11.2; it is not presented as an actively evolving product.",
-          "This case study does not claim multi-host worker clustering, exactly-once execution, safe termination of timed-out Python threads, Prometheus monitoring, or benchmarked throughput.",
+          "Developing the execution engine required making task lifecycle behavior explicit: how tasks are discovered, queued, executed, retried, and represented through results. The project also exposed important limitations in Python's concurrency primitives. In particular, timing out a Future does not forcibly terminate the underlying running thread. A timeout at the Future interface must therefore not be confused with guaranteed cancellation of the work itself.",
+          "Nuvom reached version 0.11.2 and was published on PyPI, including its scheduling functionality. Development has since been paused. The project should be understood as a published open-source framework and an exploration of task execution design, not as a claim of exactly-once processing, distributed multi-host coordination, or production-scale fault tolerance.",
         ],
       },
     ],
