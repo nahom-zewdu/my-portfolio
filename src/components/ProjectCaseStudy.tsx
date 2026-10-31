@@ -12,6 +12,19 @@ export default function ProjectCaseStudy({ project }: { project: Project }) {
         </p>
       </header>
 
+      {project.highlights.length > 0 && (
+        <section className="mb-12 border-b border-border pb-10">
+          <h2 className="mb-4">Engineering highlights</h2>
+          <ul className="space-y-3">
+            {project.highlights.map((highlight) => (
+              <li key={highlight} className="text-base leading-relaxed text-foreground/90">
+                {highlight}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       <section className="mb-12 border-b border-border pb-10">
         <h2 className="mb-4">Implementation notes</h2>
         <div className="space-y-8">
