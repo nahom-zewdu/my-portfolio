@@ -25,12 +25,13 @@ const experiences = [
   },
   {
     company: "A2SV",
-    role: "Software Engineering Trainee · Engineering training",
+    role: "Software Engineering Trainee · Engineering Training",
     summary:
-      "Engineering training focused on problem solving, software engineering fundamentals, and collaborative development.",
+      "Completed software engineering training focused on data structures and algorithms, problem solving, programming fundamentals, and collaborative software development. The experience emphasized building strong engineering foundations through structured technical practice.",
     contributions: [
-      "Developed algorithmic problem-solving and software design skills.",
-      "Practiced collaborative project work and code review.",
+      "Strengthened algorithmic problem-solving skills through data structures and algorithms practice.",
+      "Practiced software engineering fundamentals, including code organization, implementation, and problem decomposition.",
+      "Worked in a collaborative engineering environment, developing experience with teamwork, technical communication, and shared project work.",
     ],
   },
 ];
