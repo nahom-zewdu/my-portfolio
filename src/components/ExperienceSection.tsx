@@ -5,10 +5,11 @@ const experiences = [
     company: "BE Technology",
     role: "Software Engineer",
     summary:
-      "Designed, developed, maintained, and optimized software systems. The work included automation workflows and internal tools, including n8n; AI/LLM integrations; maintainable implementation; and reliability and documentation.",
+      "Build and maintain automation-oriented software systems spanning lead generation, media production, and 3D rendering. The work covers workflow design, local implementation, deployment, and cloud-side operation, with n8n and AI/LLM integrations used to connect practical business processes.",
     contributions: [
-      "Built workflows connecting asset requirements, retrieval, transfer, and Blender rendering.",
-      "Investigated procedural character animation separately from the implemented rendering workflow.",
+      "Developed lead-generation automation workflows to support business development processes.",
+      "Built an automated news-to-YouTube pipeline using RSS feeds, OpenAI, ElevenLabs, n8n, and Google Cloud Platform to turn news articles into narrated video content.",
+      "Built an AI-assisted 3D asset-to-render workflow: n8n and an LLM extract requirements for up to two assets, Sketchfab provides the assets, Google Drive handles file transfer, and a Flask service on a Google Cloud VM runs Blender headlessly using xvfb-run and stores rendered outputs in Google Cloud Storage.",
     ],
     projectHref: "/projects/blender-automation",
     projectLabel: "Blender automation case study",
