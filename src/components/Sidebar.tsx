@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { href: "/introduction", label: "Introduction" },
-  { href: "/current-work", label: "Current Work" },
+  { href: "/current-work", label: "Selected Work" },
   { href: "/engineering-notebook", label: "Engineering Notebook" },
   { href: "/experience", label: "Experience" },
   { href: "/contact", label: "Contact" },
@@ -23,7 +23,7 @@ export default function Sidebar() {
       <div className="mb-12">
         <a href="/" className="flex flex-col items-start" style={{ textDecoration: "none" }}>
           <h1 className="text-2xl font-bold text-foreground">Nahom Zewdu</h1>
-          <p className="text-sm text-muted-foreground mt-1">Backend & Systems Engineer</p>
+          <p className="text-sm text-muted-foreground mt-1">Systems, Automation &amp; Developer Tools</p>
         </a>
       </div>
 
