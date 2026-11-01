@@ -1,9 +1,23 @@
 import Link from "next/link";
 
-const experiences = [
+type Experience = {
+  company: string;
+  role: string;
+  startDate?: string;
+  endDate?: string;
+  employmentType?: string;
+  location?: string;
+  summary: string;
+  contributions: string[];
+  projectHref?: string;
+  projectLabel?: string;
+};
+
+const experiences: Experience[] = [
   {
     company: "BE Technology",
     role: "Software Engineer",
+    location: "Remote",
     summary:
       "Build and maintain automation-oriented software systems spanning lead generation, media production, and 3D rendering. The work covers workflow design, local implementation, deployment, and cloud-side operation, with n8n and AI/LLM integrations used to connect practical business processes.",
     contributions: [
@@ -41,7 +55,7 @@ export default function ExperienceSection() {
     <section id="experience" className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="space-y-2">
         <p className="text-sm uppercase tracking-[0.24em] text-accent">Professional Experience</p>
-        <h2 className="text-3xl font-semibold tracking-tight text-foreground">Systems, automation, and product engineering.</h2>
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground">Systems, automation, and product engineering.</h1>
         <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
           Experience across software systems, workflow automation, AI integrations, and engineering training.
         </p>
@@ -51,8 +65,19 @@ export default function ExperienceSection() {
         {experiences.map((exp) => (
           <article key={exp.company} className="border-b border-border pb-8 last:border-b-0 last:pb-0">
             <div className="space-y-1">
-              <h3 className="text-xl font-semibold text-foreground">{exp.company}</h3>
+              <h2 className="text-xl font-semibold text-foreground">{exp.company}</h2>
               <p className="text-base text-muted-foreground">{exp.role}</p>
+              {(exp.startDate || exp.employmentType || exp.location) && (
+                <p className="text-sm text-muted-foreground mt-1">
+                  {[
+                    exp.startDate && `${exp.startDate} – ${exp.endDate ?? "Present"}`,
+                    exp.employmentType,
+                    exp.location,
+                  ]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </p>
+              )}
             </div>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/90">{exp.summary}</p>
             <ul className="mt-4 space-y-2 text-base leading-relaxed text-muted-foreground">
