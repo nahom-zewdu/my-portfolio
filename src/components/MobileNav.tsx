@@ -25,16 +25,20 @@ export default function MobileNav() {
   return (
     <div className="md:hidden fixed top-0 left-0 right-0 z-30 border-b border-border bg-background">
       <div className="flex items-center justify-between px-3 py-3">
-        <h1 className="text-base font-semibold"><a href="/" className="hover:underline" style={{ textDecoration: "none" }}>
-          Nahom Zewdu
-        </a></h1>
+        <p className="text-base font-semibold">
+          <a href="/" className="hover:underline" style={{ textDecoration: "none" }}>
+            Nahom Zewdu
+          </a>
+        </p>
         <div className="flex items-center gap-2">
           <div className="flex items-center">
             <ModeToggle />
           </div>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isOpen}
+            aria-controls="mobile-primary-navigation"
             className="rounded p-1.5 transition-colors duration-200"
           >
             {isOpen ? (
@@ -46,27 +50,30 @@ export default function MobileNav() {
         </div>
       </div>
 
-      {isOpen && (
-        <nav className="border-t border-border bg-background px-3 py-3">
-          <ul className="space-y-2">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`block text-sm transition-colors duration-200 ${
-                    isActive(item.href)
-                      ? "text-accent font-semibold"
-                      : "text-muted-foreground hover:text-accent"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
+      <nav
+        id="mobile-primary-navigation"
+        aria-label="Primary navigation"
+        hidden={!isOpen}
+        className="border-t border-border bg-background px-3 py-3"
+      >
+        <ul className="space-y-2">
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className={`block text-sm transition-colors duration-200 ${
+                  isActive(item.href)
+                    ? "text-accent font-semibold"
+                    : "text-muted-foreground hover:text-accent"
+                }`}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 }
