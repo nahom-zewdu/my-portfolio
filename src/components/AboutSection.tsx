@@ -12,7 +12,7 @@ export default function AboutSection() {
         transition={{ duration: 0.2 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-bold tracking-tight text-accent">Engineering Profile</h2>
+        <h1 className="text-3xl font-bold tracking-tight text-accent">Engineering Profile</h1>
         <p className="text-lg text-muted-foreground mt-2">
           Software Engineer — Systems, Automation &amp; Developer Tools
         </p>
