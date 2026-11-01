@@ -19,10 +19,10 @@ export default function Sidebar() {
   };
 
   return (
-    <nav className="hidden md:flex md:fixed md:left-0 md:top-0 md:h-screen md:w-64 md:border-r md:border-border md:bg-background md:px-6 md:py-8 md:overflow-y-auto md:flex-col">
+    <nav aria-label="Primary navigation" className="hidden md:flex md:fixed md:left-0 md:top-0 md:h-screen md:w-64 md:border-r md:border-border md:bg-background md:px-6 md:py-8 md:overflow-y-auto md:flex-col">
       <div className="mb-12">
         <a href="/" className="flex flex-col items-start" style={{ textDecoration: "none" }}>
-          <h1 className="text-2xl font-bold text-foreground">Nahom Zewdu</h1>
+          <p className="text-2xl font-bold text-foreground">Nahom Zewdu</p>
           <p className="text-sm text-muted-foreground mt-1">Systems, Automation &amp; Developer Tools</p>
         </a>
       </div>
