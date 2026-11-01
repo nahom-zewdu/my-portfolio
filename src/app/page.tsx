@@ -8,7 +8,7 @@ const workLinks = [
 
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-[70vh] max-w-3xl flex-col justify-center px-4 py-16 sm:px-6 lg:px-8">
+    <div className="mx-auto flex min-h-[70vh] max-w-3xl flex-col justify-center px-4 py-16 sm:px-6 lg:px-8">
       <section className="space-y-8">
         <div className="space-y-4">
           <p className="text-sm uppercase tracking-[0.24em] text-accent">Introduction</p>
@@ -50,6 +50,6 @@ export default function Home() {
           </a>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
