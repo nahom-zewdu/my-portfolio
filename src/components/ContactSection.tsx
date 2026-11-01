@@ -33,7 +33,7 @@ const itemVariants = {
 export default function ContactSection() {
   return (
     <section id="contact" className="relative z-0 max-w-2xl mx-auto py-20 px-4 text-center">
-      <motion.h2 
+      <motion.h1
         className="text-3xl font-bold mb-6 text-accent"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -41,7 +41,7 @@ export default function ContactSection() {
         viewport={{ once: true }}
       >
         Contact
-      </motion.h2>
+      </motion.h1>
       <Card className="rounded-xl border border-border bg-card/80 backdrop-blur-none shadow-sm hover:shadow-md transition-shadow duration-200">
         <CardContent className="p-8">
           <motion.div
